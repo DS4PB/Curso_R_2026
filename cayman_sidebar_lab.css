@@ -1,0 +1,134 @@
+/* Tema Cayman adaptado à identidade do laboratório: #7C1A23 */
+
+/* === Estilo inspirado no tema Cayman === */
+
+/* Corpo do documento */
+body {
+  background-color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5 {
+  color: #7C1A23;
+}
+
+/* Links no corpo do texto */
+a {
+  color: #7C1A23;
+}
+a:hover {
+  color: #5B1119;
+}
+
+/* Código inline */
+code {
+  background-color: #f9f9f9;
+  color: #7C1A23;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 90%;
+}
+
+/* Blocos de código */
+pre {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border-left: 4px solid #7C1A23;
+  overflow-x: auto;
+}
+
+/* === TOC flutuante (barra lateral) === */
+#toc {
+  background: linear-gradient(120deg, #7C1A23, #A43C49) !important;
+  color: white !important;
+}
+
+#toc a {
+  color: white !important;
+}
+#toc a:hover {
+  color: #FBECEF !important;
+  text-decoration: underline;
+}
+
+/* Estilização da hierarquia do TOC */
+#toc ul ul {
+  padding-left: 12px !important;
+}
+
+#toc ul ul ul {
+  padding-left: 24px !important;
+}
+
+/* Título da barra lateral ("Modelos") em vinho */
+#sidebar h2 {
+  background-color: #A43C49 !important;
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.8em !important;
+  margin: 0 !important;
+  font-size: 100% !important;
+  border-bottom: none !important;
+}
+
+/* Remove linha preta abaixo do título */
+div#sidebar .divider {
+  background-color: transparent !important;
+}
+
+/* Rodapé em vinho, texto branco e ícones visíveis, alinhado à esquerda */
+#postamble {
+  background-color: #A43C49 !important;
+  color: white !important;
+  border-top: none !important;
+  padding: 12px 24px !important;
+  font-size: 90% !important;
+  text-align: left !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  z-index: 400 !important;
+}
+
+#postamble .author,
+#postamble .date {
+  color: white !important;
+  font-size: 100% !important;
+  margin-bottom: 0 !important;
+}
+
+#postamble .author span.glyphicon,
+#postamble .date span.glyphicon {
+  color: white !important;
+  font-size: 120% !important;
+  margin-right: 5px;
+}
+
+/* === Collapsible outputs === */
+
+details.output-fold summary {
+  display: inline-block;
+  background-color: #7C1A23;
+  border: 1px solid #5B1119;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 8px 0 12px 0;
+}
+
+details.output-fold summary:hover {
+  background-color: #5B1119;
+}
+
+details.output-fold summary::before {
+  content: "▶ ";
+}
+
+details.output-fold[open] summary::before {
+  content: "▼ ";
+}
+
+
