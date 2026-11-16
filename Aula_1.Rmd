@@ -24,7 +24,7 @@ O **RStudio** é um ambiente que facilita o trabalho com R, permitindo escrever 
 
 Fazer download do **R** e do **RStudio**.
 
-Criar o projeto.
+Criar o projeto do R.
 
 ## 2. Usando o R como calculadora
 
