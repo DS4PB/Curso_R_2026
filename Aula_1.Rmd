@@ -379,6 +379,17 @@ Podemos combinar sequências com expressões matemáticas.
 (4:9) * 2
 ```
 
+```{r}
+vetor <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+class(vetor)
+is.numeric(vetor)
+typeof(vetor)
+seq(0, 90, by = 3)
+rep(vetor, 2)
+sample(1:5, 30, replace = T)
+matrix(1:45, nrow = 5, ncol = 9, byrow = T)
+```
+
 ### Consultando elementos de um vetor
 
 Podemos acessar elementos específicos de um vetor utilizando colchetes `[ ]`.
@@ -483,3 +494,709 @@ Utilizando o que aprendemos nesta aula:
 6. Calcule a amplitude das alturas (maior valor menos o menor).
 7. Converta todas as alturas para milímetros.
 8. Armazene a média em um objeto chamado `media_experimento`.
+
+-------------------------------------
+
+# Operadores lógicos
+
+```{r}
+# AULA 3
+# - Operadores Lógicos e Relacionais ----
+# * Lógicos: ----
+A <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE)  
+B <- c(13, 47, 38, 62, 89, 56, 43, 89, 15)
+B[A]
+#B[-A]
+sum(A)
+!A
+sum(!A)
+# A_TF <- c(T, F, F, T, F, F, T, T, T)
+# A == A_TF
+# 5 < 8
+# 50 > 100
+# result <- 49 == 7; result
+# result_2 <- 49 == 7^2; result_2
+# result == result_2
+# typeof(result)
+# typeof(result_2)
+
+# * Relacionais: ----
+# C <- sample(1:10, size = 10, replace = F); C
+# C > 4
+# C == 4
+# C >= 4
+# C != 4
+# D <- sample(1:10, size = 10, replace = F)
+# D > C
+```
+
+# Estatística Descritiva
+
+```{r}
+length(vetor)      #comprimento vetor
+str(vetor)         #ver estrutura dos dados
+mean(vetor)        #média
+sd(vetor)          #desvio padrão
+median(vetor)      #mediana
+```
+
+# Data Frame
+
+```{r}
+# - Data frames ----
+# * Criando os vetores bases ----
+nome <- c("AnaClaraN", "AnaClaraO", "Angélica", "Brenda", "Gabriel", "João", "Marina", "Mayara", "Pedro", "Raissa")
+idade <- c(18, 19, 26, 20, 19, 21, 21, 20, 19, 18)
+irmaos <- c(T, T, T, T, T, T, F, T, T, T)
+
+# * Criando o data frame ----
+dados_ICs <- data.frame(nome, idade, irmaos); dados_ICs
+dados_ICs <- data.frame(nome = c("AnaClaraN", "AnaClaraO", "Angélica", "Brenda", "Gabriel", "João", "Marina", "Mayara", "Pedro", "Raissa"),
+                        idade = c(18, 19, 26, 20, 19, 21, 21, 20, 19, 18),
+                        irmaos = c(T, T, T, T, T, T, F, T, T, T)); dados_ICs
+
+# * Visualizando data frames ----
+dados_ICs
+View(dados_ICs)
+str(dados_ICs)
+summary(dados_ICs)
+dim(dados_ICs)
+nrow(dados_ICs)
+ncol(dados_ICs)
+
+# * Extraindo dados ----
+dados_ICs[5,1]
+# dados_ICs[10,]
+# dados_ICs[, 2]
+dados_ICs$nome
+# dados_ICs$idade
+# dados_ICs$irmaos
+dados_ICs$nome[dados_ICs$idade >= 20]
+# dados_ICs$nome[dados_ICs$irmaos == F]
+dados_ICs$idade[dados_ICs$nome == "AnaClaraN"]
+# dados_ICs$irmaos[dados_ICs$idade <= 20]
+```
+
+# Listas
+
+```{r}
+# * Criando listas: ----
+x <- c(3, 2, 3)
+y <- c(7, 7)
+z <- list(x = x, y = y); z
+lista_ICs <- list(nome, idade, irmaos); lista_ICs
+random_list <- list(78:15, dados_ICs, datasets::iris, c(T,F,T,T), "statgen"); random_list
+lista_ICs_nomeada <- list(Nomes = nome, 
+                          Idades = idade, 
+                          Irmaos = irmaos); lista_ICs_nomeada
+# * Extraindo dados ----
+lista_ICs[2] #mostra o que eu guardei na posição 2
+random_list[4] #mostra o que eu guardei na posição 4
+lista_ICs_nomeada$Nomes
+z[[1]][[2]]
+lista_ICs[[1]][[7]]
+lista_ICs_nomeada$Idades[4]
+```
+
+# IF/ELSE, WHILE e FUNÇÃO
+
+```{r}
+# Aplicação IF/ELSE: ----
+# Receber um vetor com três valores de doses de nitrogênio e, como saída,
+# informar o menor valor.
+
+vetor_doses <- c(50,100,150); vetor_doses
+vetor_doses <- c(200,120,150); vetor_doses
+vetor_doses <- c(200,300,110); vetor_doses
+
+if (vetor_doses[1] < vetor_doses[2] && vetor_doses[1] < vetor_doses [3]) {
+  print(vetor_doses[1])
+} else if (vetor_doses[2] < vetor_doses[3] && vetor_doses[2] < vetor_doses [1]) { 
+  print(vetor_doses[2])
+} else {
+  print(vetor_doses[3])
+}
+
+
+# FOR - Multiplos  ----
+# Receber dois números inteiros (x e y) e, como saída, informar os y primeiros multiplos de x
+
+numero_base <- 6
+multiplicadores <- 10
+
+numero_base <- 9
+multiplicadores <- 20
+
+numero_base <- 17
+multiplicadores <- 8
+
+for(i in 1:multiplicadores) { 
+  multiplo <- numero_base * i
+  print(multiplo)
+}
+
+
+# SEM O FOR - Multiplos  ----
+# Receber dois números inteiros (x e y) e, como saída, informar os y primeiros multiplos de x
+# Código fica extenso
+
+numero_base <- 6
+multiplicadores <- 10
+
+multiplo<- numero_base*1;multiplo
+multiplo<- numero_base*2;multiplo
+multiplo<- numero_base*3; multiplo
+multiplo<- numero_base*4;multiplo
+multiplo<- numero_base*5;multiplo
+multiplo<- numero_base*6;multiplo
+multiplo<- numero_base*7;multiplo
+multiplo<- numero_base*8; multiplo
+multiplo<- numero_base*9;multiplo
+multiplo<- numero_base*10;multiplo
+
+
+# WHILE 1 ----
+# Recebe 2 vetores e os soma, posição por posição, enquanto seus valores forem iguais
+vetor_x <- c(seq(0,100,by=5)); vetor_x
+vetor_y <- c(seq(0,50, by=5), 10 ); vetor_y
+i <- 1
+
+while(vetor_x[i] == vetor_y[i]) {
+  soma <- vetor_y[i] + vetor_x[i]
+  print (soma)
+  i<- i + 1
+}
+
+
+# WHILE 2 ----
+# Recebe 2 vetores e multiplica seus valores enquanto os numeros do segundo vetor forem maiores 
+# que os do primeiro vetor
+
+vetor_x <- c(seq(0,100,by=5)); vetor_x
+vetor_y <- c(1,6,11,16,21,26,31, 2); vetor_y
+i <- 1
+
+while(vetor_x[i] < vetor_y[i]) {
+  multiplicacao <- vetor_y[i] * vetor_x[i]
+  print (multiplicacao)
+  i <- i +1
+}
+
+
+# WHILE 3 ----
+#Recebe 2 vetores e soma seus valores enquanto os numeros do segundo vetor forem maiores 
+# que os do primeiro vetor
+
+vetor_a <- 1:10; vetor_a
+vetor_b <- 9:0; vetor_b
+i <- 1
+
+while(vetor_a[i] < vetor_b[i]) {
+  soma <- vetor_a[i] + vetor_b[i]
+  print (soma)
+  i <- i +1
+}
+
+
+# FUNCTION - Multiplos ----
+# Receber dois números inteiros (x e y), e como saída, informar os y primeiros multiplos de x
+
+multiplos <- function(numero_base, multiplicadores){
+  multiplo <- c()
+  for(i in 1:multiplicadores) { 
+    multiplo[i] <- numero_base * i 
+  }
+  return(multiplo)
+}
+
+multiplos(9, 20)
+multiplos (17,8)
+multiplos(6,10)
+
+
+# FUNCTION - Soma ----
+#Recebe 2 vetores e os soma, posição por posição, enquanto seus valores forem iguais
+
+vetor_x <- c(seq(0,100,by=5)); vetor_x
+vetor_y <- c(seq(0,50, by=5), 10 ); vetor_y
+
+soma <- function(conjunto_1, conjunto_2) {
+  vetor_soma <- c()
+  i <- 1
+  while (conjunto_1[i] == conjunto_2[i]){
+    vetor_soma[i] <- conjunto_1[i] + conjunto_2[i]
+    i <- i + 1
+  }
+  return (vetor_soma)
+}
+
+soma(vetor_x,vetor_y)
+
+
+# FUNCTION - Multiplicação ----
+# Recebe 2 vetores e multiplica seus valores enquanto os numeros do segundo vetor forem maiores 
+# que os do primeiro vetor
+
+sequencia_r <- c(seq(0,100,by=5)); sequencia_r
+sequencia_s <- c(1,6,11,16,21,26,31, 2); sequencia_s
+
+multiplicacao <- function(vetor_1, vetor_2) {
+  vetor_multiplicacao <- c()
+  i <- 1
+  while (vetor_1[i] < vetor_2[i]){
+    vetor_multiplicacao[i] <- vetor_1[i] * vetor_2[i]
+    i <- i + 1
+  }
+  return (vetor_multiplicacao)
+}
+
+multiplicacao(sequencia_r, sequencia_s)
+```
+
+# GGPLOT
+
+```{r}
+####Aquisição de dados####
+  # GGPlot2 necessita que os dados utilizados sejam um dataframe ou tibble 
+
+install.packages("tibble")
+install.packages("dados")
+install.packages("tidyverse")
+
+library(dados)
+library(tibble)
+library(tidyverse)
+
+pinguins <- data.frame(dados::pinguins); tibble::as_tibble(pinguins)
+
+  # Algumas outras formas de como apresentar os dados
+  str(pinguins)
+  dplyr::glimpse(pinguins)
+  
+  # Como pode-se perceber há algumas pontos que se encontram sem valor (NA).
+  # Para não ficar aparecendo mensagem de erro na construção dos gráficos.
+  pinguins <- na.omit(pinguins) #Eliminando a linhas sem valores
+  View(pinguins)
+  
+  attach(pinguins) #Essa função possibilita que acessemos os dados 
+  #                 pelo nome da coluna.
+  #Por exemplo:
+  tibble::as_tibble(ilha)
+
+####Construção de Gráfico a partir da função 'plot'####
+  
+  # Neste primeiro gráfico, a função 'plot' contruí um gráfico de dispersão, 
+  # pois ambos os fatores são quantitativos (x = comprimento_bico, y = massa_corporal).  
+  plot(x = comprimento_bico, y = massa_corporal,
+       xlab = "Comprimento do Bico", ylab = "Massa corporal",
+       title(main ="Gráfico de dispersão"),
+       pch = 21, col ="Gray", bg="blue", cex=1.2)
+  
+  # Neste segundo gráfico, a função 'plot' contruí um Box-plot, pois um dos fatores é quanlitativo (x = ilha).
+  plot(x = ilha, y = massa_corporal,
+       xlab = "Origem", ylab = "Massa corporal",
+       title(main ="Box-plot"),
+       pch = 21, col ="Gray", cex=1.2)  
+  
+  # Então a partir disso, observamos que a função 'plot' é funcional porém ela apresenta algumas limitações.
+  # Essas limitações serão superadas com a utilização do package 'GGPlot2'.
+  
+####Construção de Gráficos a partir do pacote 'GGPlot2'####
+  
+  # Primeiramente, iremos instalar e chamar o pacote
+  install.packages("ggplot2")
+  library(ggplot2)
+  
+  # É importante entender que a essência do 'GGPlot2' é a construção de gráficos em camadas, unidas a partir do '+'.
+  # Com será notório com o desenvolvimento dos códigos.
+  # Outro ponto, é que os dados utilizado devem estar preferencialmente como dataframe
+
+  # Um exemplo de como fica o design de um gráfico construido a partir do 'GGPlot'
+  ggplot(pinguins,
+         aes(comprimento_bico, massa_corporal, 
+             col=ilha)) +
+    geom_point(pch = 16, size = 2.5) +
+    geom_smooth(method = lm, col="black") +
+    theme_light() +
+    labs(x = "Comprimento do Bico", y = "Massa Corporal",
+         title = paste("Gráfico de dispersão")) +
+    theme(legend.position = "right", legend.title = element_blank(),
+          plot.title = element_text(color="black", size=18,
+                                    face="bold", hjust = 0.5, vjust = 0.5)) +
+    guides(color = guide_legend(title = "Origem"))
+  
+  #Error_01
+  ggplot(pinguins,
+         aes(comprimento_bico, massa_corporal, 
+             col=ilha)) +
+    geom_point(pch = 16, size = 2.5) +
+    geom_smooth(method = lm, col="black") +
+    theme_light() +
+    labs(x = "Comprimento do Bico", y = "Massa Corporal", 
+         title = paste("Gráfico de dispersão")) +
+    theme(legend.position = "right",
+          plot.title = element_text(color="black", size=18,
+                                    face="bold", hjust = 0.5, vjust = 0.5)) +
+    guides(color = guide_legend(title = "Origem"),
+           label.hjust = 0.5, label.vjust = 1)
+  
+  #Error_02
+  ggplot(pinguins,
+         aes(comprimento_bico, massa_corporal, 
+             col=ilha)) +
+    geom_point(pch = 16, size = 2.5) +
+    geom_smooth(method = lm, col="black") +
+    theme_light() +
+    labs(x = "Comprimento do Bico", y = "Massa Corporal", 
+         title = paste("Gráfico de dispersão")) +
+    theme(legend.position = "right", 
+          legend.title = element_text(size = 11, face = "bold"),
+          plot.title = element_text(color="black", size=18,
+                                    face="bold", hjust = 0.5, vjust = 0.5)) +
+    guides(color = guide_legend(title = "Origem"))
+
+####Passo a passo para construção####
+  
+  ## Primeira camada - onde recebemos os dados
+  ggplot(data = pinguins, #Para definir de que arquivo os dados serão retirados
+         aes(x = comprimento_nadadeira, y = massa_corporal)) #Define quais dados estarão na abscissa e na ordenada
+  
+    # É necessário potuar que essa precisa ser a primeira informação do seu gráfico.
+    # Entretanto não necessário que as demais camadas estejam na ordem representada, isso é apenas para facilitar a didática 
+  
+  ## Segunda camada - tipo de gráfico
+  ggplot(data = pinguins,
+         aes(x = comprimento_nadadeira, y = massa_corporal)) +
+         geom_point() # Para contrução de um gráfico de dispersão
+  
+  ggplot(data = pinguins,
+         aes(x = comprimento_nadadeira)) +
+    geom_histogram(col = "gray") # Para contrução de um histograma
+         
+    # Nessa camada há a implementação visual dos dados de acordo com o demandado
+  
+  ## terceira camada - nomeação
+  
+  ggplot(data = pinguins,
+         aes(x = comprimento_nadadeira, y = massa_corporal)) +
+    geom_point(pch = 16, size = 2.5) + 
+    labs(x = "Comprimento da Nadadeira", y = "Massa Corporal", 
+         title = paste("Gráfico de dispersão"))
+  
+    # Aqui adicionamos nome ao gráfico e aos eixos
+  
+  ## Quarta camada - Mudança do tema de fundo do gráficp
+  # theme_...
+  
+    # Aqui temos o default que é um pouco cinza, como podemos observar
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal", 
+           title = paste("Gráfico de dispersão"))
+    
+    # theme_light() - É o que eu mais uso
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal", 
+           title = paste("Gráfico de dispersão")) + 
+      theme_light()
+  
+    # theme_minimal()
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal", 
+           title = paste("Gráfico de dispersão")) + 
+      theme_minimal()
+    
+    # theme_dark()
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal", 
+           title = paste("Gráfico de dispersão")) + 
+      theme_dark()
+    
+  ## Quinta camada - alterações de pequenas configurações
+  # theme()
+
+  ggplot(data = pinguins,
+         aes(x = comprimento_nadadeira, y = massa_corporal, 
+             col = ilha)) +
+    geom_point(pch = 16, size = 2.5) + 
+    labs(x = "Comprimento da Nadadeira", y = "Massa Corporal", 
+         title = paste("Gráfico de dispersão")) + 
+    theme_light() +
+    theme(legend.position = "right", 
+          legend.title = element_text(size = 11, face = "bold"),
+          plot.title = element_text(color="black", size=18,
+                                    face="bold", hjust = 0.5, vjust = 0.5))
+  
+    # Recomendo muito você olharem, rapidamente, o 'help' dessa função, têm muita informação
+    help("theme")
+  
+  # Essas são as principais camadas da função 'ggplot'
+  # Mas há muitas outras, que com o aprofundamento dos estudos e as necessidade de cada um, vocês irão se deparar e aprender
+  
+####Exemplos de gráfico####
+    
+  ##Exemplo_01 - Adicionando legenda
+    
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal, 
+               col = ilha)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal", 
+           title = paste("Gráfico de dispersão"),
+           caption = "Fonte: as melhores possíveis, confia!") + #Adicionei a fonte
+      theme_light() +
+      theme(legend.position = "right", 
+            legend.title = element_text(size = 11, face = "bold"),
+            plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5),
+            plot.caption = element_text(color="black", size=11, 
+                                        face="plain", hjust = 1, vjust = 0.5)) + #Editei a fonte
+      guides(color = guide_legend(title = "Origem"))
+    
+    
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal, 
+               col = ilha)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal") + 
+      theme_light() +
+      theme(legend.position = "right", 
+            legend.title = element_text(size = 11, face = "bold"),
+            plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5)) +
+      guides(color = guide_legend(title = "Origem")) + 
+      ggtitle("Gráfico de dispersão",
+              subtitle = "Fonte: as melhores possíveis, confia!")
+    
+  ##Exemplo_02 - Limites ao gráfico
+    
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal, 
+               col = ilha)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal",
+           title = paste("Gráfico de dispersão")) + 
+      theme_light() +
+      theme(legend.position = "right", 
+            legend.title = element_text(size = 11, face = "bold"),
+            plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5)) +
+      guides(color = guide_legend(title = "Origem")) + 
+      xlim(180,200) + 
+      ylim(3000,4000)
+    
+      # Neste ponto, houve a delimitação do intervalo de interesse e um zoom no gráfico
+  
+  ##Exemplo_03 - Repartição da tela
+    
+    # Instalação de um pacote
+    install.packages("gridExtra")
+    library(gridExtra)
+    
+    #Na função desse pacote, devemos chamar o gráfico já salvo, por isso:
+    grafico <- ggplot(data = pinguins,
+                      aes(x = comprimento_nadadeira, y = massa_corporal, 
+                          col = ilha)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal") + 
+      theme_light() +
+      theme(legend.position = "right", 
+            legend.title = element_text(size = 11, face = "bold"),
+            plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5)) +
+      guides(color = guide_legend(title = "Origem")) 
+      
+    grafico.zoom <- ggplot(data = pinguins,
+                           aes(x = comprimento_nadadeira, y = massa_corporal, 
+                               col = ilha)) +
+      geom_point(pch = 16, size = 2.5) + 
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal") + 
+      theme_light() +
+      theme(legend.position = "right", 
+            legend.title = element_text(size = 11, face = "bold"),
+            plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5)) +
+      guides(color = guide_legend(title = "Origem")) + 
+      xlim(180,200) + 
+      ylim(3000,4000)
+    
+    grid.arrange(grafico, grafico.zoom, ncol=2)
+    
+  ##Exemplo_04
+    ggplot(data = pinguins,
+           aes(x = comprimento_nadadeira, y = massa_corporal)) +
+      stat_summary(fun = mean, geom = "point", pch = 16, size = 2.5,
+                   col = "black") + 
+      stat_summary(fun = mean, geom = "line", col = "red") +
+      labs(x = "Comprimento da Nadadeira", y = "Massa Corporal",
+           title = paste("Gráfico de dispersão")) + 
+      theme_light() +
+      theme(legend.position = "right", 
+            legend.title = element_text(size = 11, face = "bold"),
+            plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5))
+
+####Mensagem Final####
+    
+  # Dessa aula gostaria de ter deixado dois pontos importantes
+    
+    # 1 - Que vocês entendam que a melhor forma de trabalhar com o 'ggplot' não 
+    #     é decorando códigos, mas, sim, entendendo da lógica e da organização 
+    #     dessa função, e utilizando-se muito do 'help' e pesquisas.
+    #     Assim, como recomendação deixo para vocês vários exemplos de gráficos
+    #     para vocês alterarem, adicionarem e retirarem pontos deles e tentar 
+    #     rodar, a fim de entender a lógica.
+    
+    # 2 - Gostaria de lançar um primeiro pensamento, que os gráficos são exce-
+    #     lentes ferramentas para visualização e levantamento de hipotéses
+    #     entretanto essas hipotéses apenas se validaram com os testes de 
+    #     hipóteses.
+    
+    
+####Dicas - Estatística Geral####
+    
+    ##Algumas funções
+    
+    mean(comprimento_nadadeira)  #Média
+    var(comprimento_nadadeira,massa_corporal)  #Variância
+    sd(comprimento_nadadeira)  #Desvio padrão
+    cor(comprimento_nadadeira,massa_corporal)  #Coeficiente de correlação
+    ((sd(comprimento_nadadeira)/mean(comprimento_nadadeira))*100) #Coeficiente de variação
+    quantile(comprimento_nadadeira)  #Retorna os quantis
+    
+    ##Gráfico de barras
+    
+    ggplot(data = pinguins,
+           aes(massa_corporal)) +
+      geom_bar(col = "black", fill = "red") + 
+      labs(x = "Massa Corporal",
+           title = paste("Gráfico de barras")) + 
+      theme_light() +
+      theme(plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5))
+    
+    ggplot(data = pinguins,
+           aes(factor(ilha), fill = factor(ano))) +
+      geom_bar(position = "dodge2") + 
+      labs(x = "Ilhas", y = "Quantidade" ,
+           title = paste("Gráfico de barras")) + 
+      theme_light() +
+      theme(plot.title = element_text(color="black", size=18,
+                                      face="bold", hjust = 0.5, vjust = 0.5))
+
+    ##Histograma
+    
+      # Histograma por quantidade
+      ggplot(data = pinguins,
+             aes(massa_corporal)) +
+        geom_histogram(col = "black", fill = "gray") +
+        labs(x = "Massa Corporal",
+             title = paste("Histograma")) + 
+        theme_light() +
+        theme(plot.title = element_text(color="black", size=18,
+                                        face="bold", hjust = 0.5, vjust = 0.5))  
+      
+      # Histograma por densidade
+      ggplot(data = pinguins,
+             aes(massa_corporal)) +
+        geom_histogram(aes(y = ..density..), col = "black", fill = "gray") +
+        labs(x = "Massa Corporal",
+             title = paste("Histograma")) + 
+        theme_light() +
+        theme(plot.title = element_text(color="black", size=18,
+                                        face="bold", hjust = 0.5, vjust = 0.5)) 
+      
+      
+      ggplot(data = pinguins,
+             aes(bins = 30, massa_corporal)) +
+        geom_histogram(aes(y = ..density..),col = "black", fill = "gray") +
+        geom_density(col = "red") +
+        labs(x = "Massa Corporal",
+             title = paste("Histograma")) + 
+        theme_light() +
+        theme(plot.title = element_text(color="black", size=18,
+                                        face="bold", hjust = 0.5, vjust = 0.5))
+      
+  ##Box-plot
+      
+      ggplot(data = pinguins,
+             aes(x = comprimento_nadadeira, y = massa_corporal, 
+                 col = ilha)) +
+        geom_boxplot(size = 0.8) + 
+        labs(x = "Comprimento da Nadadeira", y = "Massa Corporal",
+             title = paste("Diagrama de caixa")) + 
+        theme_light() +
+        theme(legend.position = "right", 
+              legend.title = element_text(size = 11, face = "bold"),
+              plot.title = element_text(color="black", size=18,
+                                        face="bold", hjust = 0.5, vjust = 0.5)) +
+        guides(color = guide_legend(title = "Origem"))
+      
+  ##Regressão linear
+      
+      # Ajuste do modelo de regressão linear simples
+        regressao<- lm(comprimento_nadadeira ~ massa_corporal)
+      
+      # Vendo o ajuste
+        regressao
+      
+      # Teste geral pela anova
+        anova(regressao)
+      
+      # Resultados do modelo de regressão linear simples (coeficientes estimados, testes...)
+        summary(regressao)
+      
+      # Diagnóstico do modelo (análise dos resíduos)
+        plot(regressao) #Pressione 'enter' para seguir
+      
+      # Gráfico com regressão linear plotado
+        ggplot(pinguins,
+               aes(comprimento_nadadeira, massa_corporal, 
+                   col=ilha)) +
+          geom_point(pch = 16, size = 2.5) +
+          geom_smooth(method = lm, col="black") + #Essa função insere a regressão
+          theme_light() +
+          labs(x = "Comprimento da Nadadeira
+               ", y = "Massa Corporal", 
+               title = paste("Gráfico de dispersão")) +
+          theme(legend.position = "right", 
+                legend.title = element_text(size = 11, face = "bold"),
+                plot.title = element_text(color="black", size=18,
+                                          face="bold", hjust = 0.5, vjust = 0.5)) +
+          guides(color = guide_legend(title = "Origem"))
+```
+
+# DIC
+
+```{r}
+library(agricolae)
+trt <- LETTERS[1:4]; trt #definindo os tratamentos
+?LETTERS
+delineamento <- design.crd(trt,  #tratamentos
+                           r = 5, #número de repetições
+                           serie = 0); delineamento 
+?design.crd
+
+library(agricolaeplotr)
+library(ggplot2)
+
+
+plot_croqui <- plot_design_crd(delineamento,
+                            ncols = 4,
+                            nrows = 5); plot_croqui
+
+?plot_design.factorial_crd
+
+library(agricolaeplotr)
+library(agricolae)
+trt<-c(3,2) # factorial 3x2
+outdesign <- design.ab(trt, r=3, serie=2,design = 'crd')
+plot_design.factorial_crd(outdesign,ncols = 8,nrows = 6)
+```
