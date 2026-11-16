@@ -22,6 +22,10 @@ O **R** é uma linguagem de programação utilizada para organizar, manipular, a
 
 O **RStudio** é um ambiente que facilita o trabalho com R, permitindo escrever códigos, visualizar resultados e organizar nossas análises.
 
+Fazer download do **R** e do **RStudio**.
+
+Criar o projeto.
+
 ## 2. Usando o R como calculadora
 
 Vamos imaginar que medimos a altura de cinco plantas, conforme a imagem abaixo.
@@ -540,16 +544,7 @@ sum(!A)
 # D > C
 ```
 
-# Estatística Descritiva
-
-```{r}
-length(vetor)      #comprimento vetor
-str(vetor)         #ver estrutura dos dados
-mean(vetor)        #média
-sd(vetor)          #desvio padrão
-median(vetor)      #mediana
-unique(vetor)
-```
+# SEGUNDO DIA
 
 # Data Frame
 
@@ -590,6 +585,9 @@ dados_IC[C(1, 2), c(3, 4)]
 
 y = letters[1:10]
 z = LETTERS[1:10]
+
+#colnames
+#rownames
 ```
 
 # Listas
@@ -611,6 +609,17 @@ lista_ICs_nomeada$Nomes
 z[[1]][[2]]
 lista_ICs[[1]][[7]]
 lista_ICs_nomeada$Idades[4]
+```
+
+# Estatística Descritiva
+
+```{r}
+length(vetor)      #comprimento vetor
+str(vetor)         #ver estrutura dos dados
+mean(vetor)        #média
+sd(vetor)          #desvio padrão
+median(vetor)      #mediana
+unique(vetor)
 ```
 
 # IF/ELSE, WHILE e FUNÇÃO
@@ -770,6 +779,14 @@ multiplicacao <- function(vetor_1, vetor_2) {
 multiplicacao(sequencia_r, sequencia_s)
 ```
 
+# Família apply
+```{r}
+#apply
+#apply
+#lapply
+```
+
+
 # GGPLOT
 
 ```{r}
@@ -783,6 +800,9 @@ install.packages("tidyverse")
 library(dados)
 library(tibble)
 library(tidyverse)
+
+# read_xlsx()
+# read.csv
 
 pinguins <- data.frame(dados::pinguins); tibble::as_tibble(pinguins)
 
@@ -1155,39 +1175,6 @@ pinguins <- data.frame(dados::pinguins); tibble::as_tibble(pinguins)
               plot.title = element_text(color="black", size=18,
                                         face="bold", hjust = 0.5, vjust = 0.5)) +
         guides(color = guide_legend(title = "Origem"))
-      
-  ##Regressão linear
-      
-      # Ajuste do modelo de regressão linear simples
-        regressao<- lm(comprimento_nadadeira ~ massa_corporal)
-      
-      # Vendo o ajuste
-        regressao
-      
-      # Teste geral pela anova
-        anova(regressao)
-      
-      # Resultados do modelo de regressão linear simples (coeficientes estimados, testes...)
-        summary(regressao)
-      
-      # Diagnóstico do modelo (análise dos resíduos)
-        plot(regressao) #Pressione 'enter' para seguir
-      
-      # Gráfico com regressão linear plotado
-        ggplot(pinguins,
-               aes(comprimento_nadadeira, massa_corporal, 
-                   col=ilha)) +
-          geom_point(pch = 16, size = 2.5) +
-          geom_smooth(method = lm, col="black") + #Essa função insere a regressão
-          theme_light() +
-          labs(x = "Comprimento da Nadadeira
-               ", y = "Massa Corporal", 
-               title = paste("Gráfico de dispersão")) +
-          theme(legend.position = "right", 
-                legend.title = element_text(size = 11, face = "bold"),
-                plot.title = element_text(color="black", size=18,
-                                          face="bold", hjust = 0.5, vjust = 0.5)) +
-          guides(color = guide_legend(title = "Origem"))
 ```
 
 # DIC
