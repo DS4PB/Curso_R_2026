@@ -388,6 +388,16 @@ seq(0, 90, by = 3)
 rep(vetor, 2)
 sample(1:5, 30, replace = T)
 matrix(1:45, nrow = 5, ncol = 9, byrow = T)
+#rbind e cbind
+#sort()
+
+a = factor(c(1,2,3,4,5,6)); a
+b = factor(c("A","B","C","D")); b
+d = factor(c(1,1,1,2,2,2,3,3,3,4,4,4,"E","E","E","F","F","F"))
+class(d)
+levels(d)
+nlevels(a)
+nlevels(d)
 ```
 
 ### Consultando elementos de um vetor
@@ -538,6 +548,7 @@ str(vetor)         #ver estrutura dos dados
 mean(vetor)        #média
 sd(vetor)          #desvio padrão
 median(vetor)      #mediana
+unique(vetor)
 ```
 
 # Data Frame
@@ -566,8 +577,8 @@ ncol(dados_ICs)
 
 # * Extraindo dados ----
 dados_ICs[5,1]
-# dados_ICs[10,]
-# dados_ICs[, 2]
+dados_ICs[10,]
+dados_ICs[, 2]
 dados_ICs$nome
 # dados_ICs$idade
 # dados_ICs$irmaos
@@ -575,6 +586,10 @@ dados_ICs$nome[dados_ICs$idade >= 20]
 # dados_ICs$nome[dados_ICs$irmaos == F]
 dados_ICs$idade[dados_ICs$nome == "AnaClaraN"]
 # dados_ICs$irmaos[dados_ICs$idade <= 20]
+dados_IC[C(1, 2), c(3, 4)]
+
+y = letters[1:10]
+z = LETTERS[1:10]
 ```
 
 # Listas
@@ -604,6 +619,8 @@ lista_ICs_nomeada$Idades[4]
 # Aplicação IF/ELSE: ----
 # Receber um vetor com três valores de doses de nitrogênio e, como saída,
 # informar o menor valor.
+
+#seq_along()
 
 vetor_doses <- c(50,100,150); vetor_doses
 vetor_doses <- c(200,120,150); vetor_doses
