@@ -683,3 +683,62 @@ Imagine que as seis plantas foram avaliadas novamente após 15 dias, apresentand
 13. Calcule o crescimento de cada planta entre as duas avaliações.
 14. Qual planta apresentou o maior crescimento?
 15. Qual foi o crescimento médio das seis plantas?
+
+
+<!-- Menu lateral expansível -->
+<script>
+(function() {
+  function init() {
+    const toc = document.querySelector('#sidebar #toc');
+    if (!toc || toc.dataset.treeInit) return;
+    toc.dataset.treeInit = '1';
+    const root = toc.querySelector(':scope > ul');
+    if (!root) return;
+    root.classList.add('nav');
+    const lis = Array.from(toc.querySelectorAll('li'));
+    const directUL = li => Array.from(li.children).find(el => el.tagName === 'UL');
+    const directA = li => Array.from(li.children).find(el => el.tagName === 'A');
+    lis.forEach(li => {
+      if (directUL(li)) li.classList.add('toc-has-children');
+      li.classList.remove('toc-expanded');
+      const a = directA(li);
+      if (a && directUL(li)) {
+        a.addEventListener('click', function(ev) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          li.classList.toggle('toc-expanded');
+        });
+      }
+    });
+    const first = root.querySelector(':scope > li');
+    if (first) first.classList.add('toc-expanded');
+    const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+    let lastSection = '';
+    function onScroll() {
+      let current = null;
+      for (const link of links) {
+        let id;
+        try { id = decodeURIComponent(link.getAttribute('href').slice(1)); }
+        catch(e) { continue; }
+        const target = document.getElementById(id);
+        if (target && target.getBoundingClientRect().top < 180) current = link;
+      }
+      if (!current) return;
+      const section = current.getAttribute('href');
+      if (section === lastSection) return;
+      lastSection = section;
+      lis.forEach(li => li.classList.remove('toc-expanded'));
+      let node = current.parentElement;
+      while (node && node !== toc) {
+        if (node.tagName === 'LI') node.classList.add('toc-expanded');
+        node = node.parentElement;
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    // Inicialmente preserva o primeiro nível aberto.
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+</script>
