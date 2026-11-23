@@ -1,29 +1,3 @@
-/* Tema Cayman adaptado à identidade do laboratório: #7C1A23 */
-
-/* === Estilo inspirado no tema Cayman === */
-
-/* Corpo do documento */
-body {
-  background-color: white;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-}
-
-/* Títulos */
-h1, h2, h3, h4, h5 {
-  color: #7C1A23;
-}
-
-/* Links no corpo do texto */
-a {
-  color: #7C1A23;
-}
-a:hover {
-  color: #5B1119;
-}
-
-/* Código inline */
-code {
   background-color: #f9f9f9;
   color: #7C1A23;
   padding: 2px 4px;
@@ -62,7 +36,7 @@ pre {
   padding-left: 24px !important;
 }
 
-/* Título da barra lateral ("Modelos") em vinho */
+/* Título da barra lateral ("Modelos") com azul sólido */
 #sidebar h2 {
   background-color: #A43C49 !important;
   color: white !important;
@@ -79,7 +53,7 @@ div#sidebar .divider {
   background-color: transparent !important;
 }
 
-/* Rodapé em vinho, texto branco e ícones visíveis, alinhado à esquerda */
+/* Rodapé com azul sólido, texto branco e ícones visíveis, alinhado à esquerda */
 #postamble {
   background-color: #A43C49 !important;
   color: white !important;
@@ -130,5 +104,4 @@ details.output-fold summary::before {
 details.output-fold[open] summary::before {
   content: "▼ ";
 }
-
 

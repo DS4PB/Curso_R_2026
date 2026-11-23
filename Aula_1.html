@@ -1182,119 +1182,7 @@ code span.vs { color: #bf0303; }
 code span.wa { color: #bf0303; } 
 </style>
     
-        <style type="text/css">
-
-
-body {
-background-color: white;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-color: #2c3e50;
-}
-
-h1, h2, h3, h4, h5 {
-color: #7C1A23;
-}
-
-a {
-color: #7C1A23;
-}
-a:hover {
-color: #5B1119;
-}
-
-code {
-background-color: #f9f9f9;
-color: #7C1A23;
-padding: 2px 4px;
-border-radius: 4px;
-font-size: 90%;
-}
-
-pre {
-background-color: #f3f3f3;
-padding: 10px;
-border-left: 4px solid #7C1A23;
-overflow-x: auto;
-}
-
-#toc {
-background: linear-gradient(120deg, #7C1A23, #A43C49) !important;
-color: white !important;
-}
-#toc a {
-color: white !important;
-}
-#toc a:hover {
-color: #FBECEF !important;
-text-decoration: underline;
-}
-
-#toc ul ul {
-padding-left: 12px !important;
-}
-#toc ul ul ul {
-padding-left: 24px !important;
-}
-
-#sidebar h2 {
-background-color: #A43C49 !important;
-color: white !important;
-font-weight: bold;
-text-align: center;
-padding: 0.8em !important;
-margin: 0 !important;
-font-size: 100% !important;
-border-bottom: none !important;
-}
-
-div#sidebar .divider {
-background-color: transparent !important;
-}
-
-#postamble {
-background-color: #A43C49 !important;
-color: white !important;
-border-top: none !important;
-padding: 12px 24px !important;
-font-size: 90% !important;
-text-align: left !important;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-z-index: 400 !important;
-}
-#postamble .author,
-#postamble .date {
-color: white !important;
-font-size: 100% !important;
-margin-bottom: 0 !important;
-}
-#postamble .author span.glyphicon,
-#postamble .date span.glyphicon {
-color: white !important;
-font-size: 120% !important;
-margin-right: 5px;
-}
-
-details.output-fold summary {
-display: inline-block;
-background-color: #7C1A23;
-border: 1px solid #5B1119;
-color: white;
-border-radius: 6px;
-padding: 8px 14px;
-font-weight: bold;
-cursor: pointer;
-margin: 8px 0 12px 0;
-}
-details.output-fold summary:hover {
-background-color: #5B1119;
-}
-details.output-fold summary::before {
-content: "▶ ";
-}
-details.output-fold[open] summary::before {
-content: "▼ ";
-}
-</style>
+        <style type="text/css"> background-color: #f9f9f9;color: #7C1A23;padding: 2px 4px;border-radius: 4px;font-size: 90%;}pre {background-color: #f3f3f3;padding: 10px;border-left: 4px solid #7C1A23;overflow-x: auto;}#toc {background: linear-gradient(120deg, #7C1A23, #A43C49) !important;color: white !important;}#toc a {color: white !important;}#toc a:hover {color: #FBECEF !important;text-decoration: underline;}#toc ul ul {padding-left: 12px !important;}#toc ul ul ul {padding-left: 24px !important;}#sidebar h2 {background-color: #A43C49 !important;color: white !important;font-weight: bold;text-align: center;padding: 0.8em !important;margin: 0 !important;font-size: 100% !important;border-bottom: none !important;}div#sidebar .divider {background-color: transparent !important;}#postamble {background-color: #A43C49 !important;color: white !important;border-top: none !important;padding: 12px 24px !important;font-size: 90% !important;text-align: left !important;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;z-index: 400 !important;}#postamble .author,#postamble .date {color: white !important;font-size: 100% !important;margin-bottom: 0 !important;}#postamble .author span.glyphicon,#postamble .date span.glyphicon {color: white !important;font-size: 120% !important;margin-right: 5px;}details.output-fold summary {display: inline-block;background-color: #7C1A23;border: 1px solid #5B1119;color: white;border-radius: 6px;padding: 8px 14px;font-weight: bold;cursor: pointer;margin: 8px 0 12px 0;}details.output-fold summary:hover {background-color: #5B1119;}details.output-fold summary::before {content: "▶ ";}details.output-fold[open] summary::before {content: "▼ ";}</style>
     
     <!-- tabsets -->
     <script>
@@ -1387,8 +1275,6 @@ margin-left: 0 !important;
     <h2><a href="#content">Primeiros passos no R</a></h2>
     <div id="toc">
       <ul>
-      <li><a href="#primeiros-passos" id="toc-primeiros-passos">Primeiros passos</a>
-      <ul>
       <li><a href="#conhecendo-o-r-e-o-rstudio" id="toc-conhecendo-o-r-e-o-rstudio">1. Conhecendo o R e o
       RStudio</a></li>
       <li><a href="#usando-o-r-como-calculadora" id="toc-usando-o-r-como-calculadora">2. Usando o R como
@@ -1430,8 +1316,28 @@ margin-left: 0 !important;
       <li><a href="#opera%C3%A7%C3%B5es-com-vetores" id="toc-operações-com-vetores">Operações com vetores</a></li>
       <li><a href="#opera%C3%A7%C3%B5es-entre-vetores" id="toc-operações-entre-vetores">Operações entre vetores</a></li>
       </ul></li>
-      <li><a href="#desafio-final" id="toc-desafio-final">5. Desafio
-      final</a></li>
+      <li><a href="#operadores-l%C3%B3gicos-e-relacionais" id="toc-operadores-lógicos-e-relacionais">5. Operadores lógicos e
+      relacionais</a>
+      <ul>
+      <li><a href="#operadores-relacionais" id="toc-operadores-relacionais">Operadores relacionais</a></li>
+      <li><a href="#comparando-as-alturas-das-plantas" id="toc-comparando-as-alturas-das-plantas">Comparando as alturas
+      das plantas</a></li>
+      <li><a href="#operadores-l%C3%B3gicos" id="toc-operadores-lógicos">Operadores lógicos</a></li>
+      <li><a href="#operador-de-nega%C3%A7%C3%A3o" id="toc-operador-de-negação">Operador de negação
+      (<code>!</code>)</a></li>
+      <li><a href="#combinando-condi%C3%A7%C3%B5es" id="toc-combinando-condições">Combinando condições</a></li>
+      <li><a href="#vamos-praticar-2" id="toc-vamos-praticar-2">Vamos
+      praticar!</a></li>
+      </ul></li>
+      <li><a href="#desafio-final-explorando-um-novo-experimento" id="toc-desafio-final-explorando-um-novo-experimento">6. Desafio
+      final: explorando um novo experimento</a>
+      <ul>
+      <li><a href="#parte-1.-organizando-e-explorando-os-dados" id="toc-parte-1.-organizando-e-explorando-os-dados">Parte 1.
+      Organizando e explorando os dados</a></li>
+      <li><a href="#parte-2.-selecionando-observa%C3%A7%C3%B5es" id="toc-parte-2.-selecionando-observações">Parte 2. Selecionando
+      observações</a></li>
+      <li><a href="#parte-3.-um-%C3%BAltimo-desafio" id="toc-parte-3.-um-último-desafio">Parte 3. Um último
+      desafio!</a></li>
       </ul></li>
       </ul>
     </div>
@@ -1447,8 +1353,6 @@ margin-left: 0 !important;
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div id="main">
-<div id="primeiros-passos" class="section level1">
-<h1>Primeiros passos</h1>
 <p>Nesta primeira aula, vamos conhecer o ambiente de programação R,
 aprender a executar comandos e utilizar o R para realizar operações
 matemáticas.</p>
@@ -1461,6 +1365,9 @@ organizar, manipular, analisar e visualizar dados.</p>
 <p>O <strong>RStudio</strong> é um ambiente que facilita o trabalho com
 R, permitindo escrever códigos, visualizar resultados e organizar nossas
 análises.</p>
+<p>Fazer download do <strong>R</strong> e do
+<strong>RStudio</strong>.</p>
+<p>Criar o projeto do R.</p>
 </div>
 <div id="usando-o-r-como-calculadora" class="section level2">
 <h2>2. Usando o R como calculadora</h2>
@@ -1776,23 +1683,62 @@ inteiros consecutivos.</p>
 <pre><code>##  [1]  5  6  7  8  9 10 11 12 13 14 15 16</code></pre>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a>(<span class="dv">4</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1]  8 10 12 14 16 18</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a>vetor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb101-2"><a href="#cb101-2" tabindex="-1"></a><span class="fu">class</span>(vetor)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a><span class="fu">is.numeric</span>(vetor)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a><span class="fu">typeof</span>(vetor)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="at">by =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1]  0  3  6  9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60 63 66 69 72
+## [26] 75 78 81 84 87 90</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a><span class="fu">rep</span>(vetor, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">30</span>, <span class="at">replace =</span> T)</span></code></pre></div>
+<pre><code>##  [1] 5 4 1 1 2 5 1 4 5 2 2 3 4 2 5 2 4 1 1 4 4 1 2 5 4 4 5 1 4 2</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">45</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">9</span>, <span class="at">byrow =</span> T)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+## [1,]    1    2    3    4    5    6    7    8    9
+## [2,]   10   11   12   13   14   15   16   17   18
+## [3,]   19   20   21   22   23   24   25   26   27
+## [4,]   28   29   30   31   32   33   34   35   36
+## [5,]   37   38   39   40   41   42   43   44   45</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a><span class="co">#rbind e cbind</span></span>
+<span id="cb115-2"><a href="#cb115-2" tabindex="-1"></a><span class="co">#sort()</span></span>
+<span id="cb115-3"><a href="#cb115-3" tabindex="-1"></a></span>
+<span id="cb115-4"><a href="#cb115-4" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)); a</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6
+## Levels: 1 2 3 4 5 6</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>)); b</span></code></pre></div>
+<pre><code>## [1] A B C D
+## Levels: A B C D</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>))</span>
+<span id="cb119-2"><a href="#cb119-2" tabindex="-1"></a><span class="fu">class</span>(d)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" tabindex="-1"></a><span class="fu">levels</span>(d)</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;E&quot; &quot;F&quot;</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a><span class="fu">nlevels</span>(a)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a><span class="fu">nlevels</span>(d)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
 </div>
 <div id="consultando-elementos-de-um-vetor" class="section level3">
 <h3>Consultando elementos de um vetor</h3>
 <p>Podemos acessar elementos específicos de um vetor utilizando
 colchetes <code>[ ]</code>.</p>
 <p>Qual é a altura da terceira planta?</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a>altura[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" tabindex="-1"></a>altura[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
 <p>E se quisermos consultar as alturas das plantas 1 e 5?</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a>altura[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" tabindex="-1"></a>altura[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)]</span></code></pre></div>
 <pre><code>## [1] 12 15</code></pre>
 <p>Também podemos consultar um intervalo de posições.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a>altura[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" tabindex="-1"></a>altura[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
 <pre><code>## [1] 14 11 13</code></pre>
 <p>Para excluir uma posição da consulta, utilizamos o sinal
 negativo.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a>altura[<span class="sc">-</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" tabindex="-1"></a>altura[<span class="sc">-</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 12 14 13 15</code></pre>
 <p>Isso não remove o elemento do vetor original. Apenas retorna os
 demais elementos.</p>
@@ -1803,13 +1749,13 @@ demais elementos.</p>
 os seus elementos de uma só vez.</p>
 <p>Imagine que queremos converter as alturas das plantas de centímetros
 para milímetros.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a>altura <span class="sc">*</span> <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" tabindex="-1"></a>altura <span class="sc">*</span> <span class="dv">10</span></span></code></pre></div>
 <pre><code>## [1] 120 140 110 130 150</code></pre>
 <p>E se quisermos converter as alturas para metros?</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a>altura <span class="sc">/</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" tabindex="-1"></a>altura <span class="sc">/</span> <span class="dv">100</span></span></code></pre></div>
 <pre><code>## [1] 0.12 0.14 0.11 0.13 0.15</code></pre>
 <p>Também podemos elevar todos os valores ao quadrado.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a>altura<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" tabindex="-1"></a>altura<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 144 196 121 169 225</code></pre>
 </div>
 <div id="operações-entre-vetores" class="section level3">
@@ -1818,16 +1764,16 @@ para milímetros.</p>
 comprimento.</p>
 <p>Imagine que as mesmas cinco plantas foram medidas novamente após
 determinado período.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>altura_inicial <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">15</span>)</span>
-<span id="cb115-2"><a href="#cb115-2" tabindex="-1"></a></span>
-<span id="cb115-3"><a href="#cb115-3" tabindex="-1"></a>altura_final <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">19</span>, <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" tabindex="-1"></a>altura_inicial <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">15</span>)</span>
+<span id="cb141-2"><a href="#cb141-2" tabindex="-1"></a></span>
+<span id="cb141-3"><a href="#cb141-3" tabindex="-1"></a>altura_final <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">19</span>, <span class="dv">20</span>)</span></code></pre></div>
 <p>Qual foi o crescimento de cada planta?</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a>crescimento <span class="ot">&lt;-</span> altura_final <span class="sc">-</span> altura_inicial</span>
-<span id="cb116-2"><a href="#cb116-2" tabindex="-1"></a></span>
-<span id="cb116-3"><a href="#cb116-3" tabindex="-1"></a>crescimento</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" tabindex="-1"></a>crescimento <span class="ot">&lt;-</span> altura_final <span class="sc">-</span> altura_inicial</span>
+<span id="cb142-2"><a href="#cb142-2" tabindex="-1"></a></span>
+<span id="cb142-3"><a href="#cb142-3" tabindex="-1"></a>crescimento</span></code></pre></div>
 <pre><code>## [1] 5 4 5 6 5</code></pre>
 <p>Qual foi o crescimento médio?</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" tabindex="-1"></a><span class="fu">mean</span>(crescimento)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" tabindex="-1"></a><span class="fu">mean</span>(crescimento)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p><strong>Vamos praticar!</strong></p>
 <ol style="list-style-type: decimal">
@@ -1841,24 +1787,227 @@ milímetros.</li>
 </ol>
 </div>
 </div>
-<div id="desafio-final" class="section level2">
-<h2>5. Desafio final</h2>
-<p>Agora é sua vez de trabalhar com um novo conjunto de dados!</p>
-<p>Em outro experimento, foram avaliadas seis plantas, cujas alturas
-foram:</p>
-<p><strong>18, 21, 19, 24, 20 e 22 cm.</strong></p>
-<p>Utilizando o que aprendemos nesta aula:</p>
+<div id="operadores-lógicos-e-relacionais" class="section level2">
+<h2>5. Operadores lógicos e relacionais</h2>
+<p>Até agora, aprendemos a criar vetores e realizar operações com seus
+elementos. Mas e se quisermos identificar apenas as plantas que atendem
+a determinada condição?</p>
+<p>Para isso, podemos utilizar os operadores relacionais e lógicos.</p>
+<div id="operadores-relacionais" class="section level3">
+<h3>Operadores relacionais</h3>
+<p>Os operadores relacionais permitem comparar valores. O resultado
+dessas comparações será sempre <code>TRUE</code> (verdadeiro) ou
+<code>FALSE</code> (falso).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>&gt;</code></td>
+<td>Maior que</td>
+</tr>
+<tr class="even">
+<td align="center"><code>&lt;</code></td>
+<td>Menor que</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>&gt;=</code></td>
+<td>Maior ou igual a</td>
+</tr>
+<tr class="even">
+<td align="center"><code>&lt;=</code></td>
+<td>Menor ou igual a</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>==</code></td>
+<td>Igual a</td>
+</tr>
+<tr class="even">
+<td align="center"><code>!=</code></td>
+<td>Diferente de</td>
+</tr>
+</tbody>
+</table>
+<p>Vamos começar com algumas comparações simples.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;</span> <span class="dv">8</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" tabindex="-1"></a><span class="dv">50</span> <span class="sc">&gt;</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a><span class="dv">49</span> <span class="sc">==</span> <span class="dv">7</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" tabindex="-1"></a><span class="dv">49</span> <span class="sc">==</span> <span class="dv">7</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="comparando-as-alturas-das-plantas" class="section level3">
+<h3>Comparando as alturas das plantas</h3>
+<p>Vamos recuperar o vetor com as alturas das cinco plantas.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" tabindex="-1"></a>altura <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">15</span>)</span></code></pre></div>
+<p><strong>Quais plantas possuem altura superior a 13 cm?</strong></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" tabindex="-1"></a>altura <span class="sc">&gt;</span> <span class="dv">13</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE  TRUE</code></pre>
+<p>O R retorna um vetor de valores lógicos, indicando quais observações
+atendem à condição.</p>
+<p>Podemos realizar outras comparações:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" tabindex="-1"></a>altura <span class="sc">&lt;</span> <span class="dv">13</span></span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" tabindex="-1"></a>altura <span class="sc">&gt;=</span> <span class="dv">13</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" tabindex="-1"></a>altura <span class="sc">==</span> <span class="dv">14</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" tabindex="-1"></a>altura <span class="sc">!=</span> <span class="dv">12</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p><strong>Mas como visualizar apenas as alturas das plantas que possuem
+mais de 13 cm?</strong></p>
+<p>Podemos combinar a condição com os colchetes <code>[ ]</code>, que
+aprendemos anteriormente.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" tabindex="-1"></a>altura[altura <span class="sc">&gt;</span> <span class="dv">13</span>]</span></code></pre></div>
+<pre><code>## [1] 14 15</code></pre>
+<p>Nesse caso, o R retorna apenas os elementos que atendem à
+condição.</p>
+</div>
+<div id="operadores-lógicos" class="section level3">
+<h3>Operadores lógicos</h3>
+<p>Além de comparar valores, podemos trabalhar diretamente com vetores
+lógicos.</p>
+<p>Vamos criar dois vetores:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb167-2"><a href="#cb167-2" tabindex="-1"></a></span>
+<span id="cb167-3"><a href="#cb167-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">47</span>, <span class="dv">38</span>, <span class="dv">62</span>, <span class="dv">89</span>, <span class="dv">56</span>, <span class="dv">43</span>, <span class="dv">89</span>, <span class="dv">15</span>)</span></code></pre></div>
+<p>O vetor <code>A</code> contém valores lógicos, enquanto o vetor
+<code>B</code> contém valores numéricos.</p>
+<p>Podemos utilizar <code>A</code> para selecionar elementos de
+<code>B</code>.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" tabindex="-1"></a>B[A]</span></code></pre></div>
+<pre><code>## [1] 13 62 43 89 15</code></pre>
+<p>O R retorna apenas os valores de <code>B</code> que correspondem às
+posições identificadas como <code>TRUE</code> no vetor
+<code>A</code>.</p>
+<p><strong>Quantas posições possuem o valor
+<code>TRUE</code>?</strong></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" tabindex="-1"></a><span class="fu">sum</span>(A)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>A função <code>sum()</code> também pode ser aplicada a vetores
+lógicos porque, nesse contexto, o R considera <code>TRUE</code> como 1 e
+<code>FALSE</code> como 0.</p>
+</div>
+<div id="operador-de-negação" class="section level3">
+<h3>Operador de negação (<code>!</code>)</h3>
+<p>O operador <code>!</code> inverte os valores lógicos, transformando
+<code>TRUE</code> em <code>FALSE</code> e vice-versa.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" tabindex="-1"></a><span class="sc">!</span>A</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<p>Podemos utilizar essa operação para selecionar os elementos que não
+foram selecionados anteriormente.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" tabindex="-1"></a>B[<span class="sc">!</span>A]</span></code></pre></div>
+<pre><code>## [1] 47 38 89 56</code></pre>
+<p>E quantos valores <code>FALSE</code> existem no vetor original?</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="sc">!</span>A)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="combinando-condições" class="section level3">
+<h3>Combinando condições</h3>
+<p>Também podemos combinar duas ou mais condições.</p>
+<p>Os principais operadores são:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>&amp;</code></td>
+<td>E (ambas as condições devem ser verdadeiras)</td>
+</tr>
+<tr class="even">
+<td align="center"><code>|</code></td>
+<td>OU (pelo menos uma condição deve ser verdadeira)</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>!</code></td>
+<td>NÃO (inverte a condição)</td>
+</tr>
+</tbody>
+</table>
+<p>Voltando às alturas das cinco plantas:</p>
+<p><strong>Quais plantas possuem altura maior que 12 cm e menor que 15
+cm?</strong></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1" tabindex="-1"></a>altura <span class="sc">&gt;</span> <span class="dv">12</span> <span class="sc">&amp;</span> altura <span class="sc">&lt;</span> <span class="dv">15</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE FALSE</code></pre>
+<p>Para visualizar apenas essas alturas:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" tabindex="-1"></a>altura[altura <span class="sc">&gt;</span> <span class="dv">12</span> <span class="sc">&amp;</span> altura <span class="sc">&lt;</span> <span class="dv">15</span>]</span></code></pre></div>
+<pre><code>## [1] 14 13</code></pre>
+<p>Agora, quais plantas possuem altura inferior a 12 cm ou superior a 14
+cm?</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="#cb182-1" tabindex="-1"></a>altura[altura <span class="sc">&lt;</span> <span class="dv">12</span> <span class="sc">|</span> altura <span class="sc">&gt;</span> <span class="dv">14</span>]</span></code></pre></div>
+<pre><code>## [1] 11 15</code></pre>
+</div>
+<div id="vamos-praticar-2" class="section level3">
+<h3>Vamos praticar!</h3>
+<p>Utilizando o vetor <code>altura</code>, responda:</p>
 <ol style="list-style-type: decimal">
-<li>Crie um vetor chamado <code>altura_experimento</code> com as seis
-observações.</li>
-<li>Descubra quantas plantas foram avaliadas.</li>
-<li>Calcule a altura média.</li>
-<li>Identifique a menor e a maior altura.</li>
-<li>Consulte a altura da quinta planta.</li>
-<li>Calcule a amplitude das alturas (maior valor menos o menor).</li>
-<li>Converta todas as alturas para milímetros.</li>
-<li>Armazene a média em um objeto chamado
-<code>media_experimento</code>.</li>
+<li>Quais plantas possuem altura superior a 12 cm?</li>
+<li>Quantas plantas possuem altura igual ou superior a 14 cm?</li>
+<li>Quais plantas possuem altura diferente de 13 cm?</li>
+<li>Quantas plantas possuem altura inferior a 15 cm?</li>
+<li>Quais plantas possuem altura entre 12 e 14 cm, incluindo esses dois
+valores?</li>
+</ol>
+<p><strong>Desafio:</strong> utilizando os operadores lógicos e
+relacionais, escreva um comando que retorne apenas as alturas das
+plantas que são maiores que a média do experimento.</p>
+</div>
+</div>
+<div id="desafio-final-explorando-um-novo-experimento" class="section level2">
+<h2>6. Desafio final: explorando um novo experimento</h2>
+<p>Agora é sua vez de colocar em prática o que aprendemos!</p>
+<p>Em um experimento, foram avaliadas seis plantas, que apresentaram as
+seguintes alturas:</p>
+<p><strong>18, 21, 19, 24, 20 e 22 cm.</strong></p>
+<p>Utilizando os comandos aprendidos nesta aula, responda às questões
+abaixo.</p>
+<div id="parte-1.-organizando-e-explorando-os-dados" class="section level3">
+<h3>Parte 1. Organizando e explorando os dados</h3>
+<ol style="list-style-type: decimal">
+<li>Crie um vetor chamado <code>altura_experimento</code> contendo as
+alturas das seis plantas.</li>
+<li>Quantas plantas foram avaliadas?</li>
+<li>Qual é a altura média das plantas? Armazene o resultado em um objeto
+chamado <code>media_experimento</code>.</li>
+<li>Quais são a menor e a maior altura observadas?</li>
+<li>Qual é a amplitude das alturas (diferença entre o maior e o menor
+valor)?</li>
+<li>Qual é a altura da quinta planta?</li>
+<li>Converta todas as alturas de centímetros para milímetros.</li>
+</ol>
+</div>
+<div id="parte-2.-selecionando-observações" class="section level3">
+<h3>Parte 2. Selecionando observações</h3>
+<ol start="8" style="list-style-type: decimal">
+<li>Quais plantas apresentam altura superior a 20 cm?</li>
+<li>Quantas plantas apresentam altura igual ou superior a 21 cm?</li>
+<li>Quais são as alturas das plantas que apresentam valores entre 19 e
+22 cm, incluindo esses limites?</li>
+<li>Quantas plantas apresentam altura superior à média do
+experimento?</li>
+</ol>
+</div>
+<div id="parte-3.-um-último-desafio" class="section level3">
+<h3>Parte 3. Um último desafio!</h3>
+<p>Imagine que as seis plantas foram avaliadas novamente após 15 dias,
+apresentando as seguintes alturas:</p>
+<p><strong>23, 25, 26, 28, 27 e 29 cm.</strong></p>
+<ol start="12" style="list-style-type: decimal">
+<li>Crie um novo vetor chamado <code>altura_final</code> com as alturas
+da segunda avaliação.</li>
+<li>Calcule o crescimento de cada planta entre as duas avaliações.</li>
+<li>Qual planta apresentou o maior crescimento?</li>
+<li>Qual foi o crescimento médio das seis plantas?</li>
 </ol>
 </div>
 </div>

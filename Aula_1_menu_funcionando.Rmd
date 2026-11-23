@@ -1,0 +1,744 @@
+---
+title: "Primeiros passos no R"
+subtitle: "Aula 1 | Conhecendo o R"
+author: "DS4PB"
+date: "2026-11-09"
+output:
+  rmdformats::readthedown:
+    toc_depth: 3
+    self_contained: true
+    css: "cayman_sidebar_lab_funcionando.css"
+---
+
+Nesta primeira aula, vamos conhecer o ambiente de programação R, aprender a executar comandos e utilizar o R para realizar operações matemáticas.
+
+Ao longo da aula, trabalharemos com um pequeno conjunto de dados de altura de plantas. 
+
+## 1. Conhecendo o R e o RStudio
+
+O **R** é uma linguagem de programação utilizada para organizar, manipular, analisar e visualizar dados.
+
+O **RStudio** é um ambiente que facilita o trabalho com R, permitindo escrever códigos, visualizar resultados e organizar nossas análises.
+
+Fazer download do **R** e do **RStudio**.
+
+Criar o projeto do R.
+
+## 2. Usando o R como calculadora
+
+Vamos imaginar que medimos a altura de cinco plantas, conforme a imagem abaixo.
+
+![Altura de cinco plantas](imagens/plantas.png)
+
+Antes de organizar esses dados, vamos aprender a realizar
+algumas operações matemáticas no R.
+
+### Adição (+)
+
+Qual é a soma das alturas das plantas A e C?
+
+```{r}
+12+11
+```
+
+### Subtração(-)
+
+Qual é a diferença de altura entre as plantas E e B?
+
+```{r}
+15-14
+```
+
+### Multiplicação(*)
+
+Se tivéssemos três plantas com a mesma altura da planta A, qual seria a soma de suas alturas?
+
+```{r}
+12*3
+```
+
+### Divisão (/)
+
+Se dividirmos a soma das alturas das cinco plantas pelo número de plantas, qual será o resultado?
+
+```{r}
+(12+14+11+13+15)/5
+```
+
+### Divisão inteira e resto da divisão
+
+Imagine que temos **15 plantas** e queremos distribuí-las igualmente em **4 grupos**, sem dividir nenhuma planta.
+
+Primeiro, vamos realizar uma divisão comum:
+
+```{r}
+15/4
+```
+
+O resultado é 3,75. Entretanto, não podemos colocar 3,75 plantas em cada grupo.
+
+Para resolver esse problema, podemos utilizar dois operadores:
+
+- **`%/%` (divisão inteira):** informa quantas plantas inteiras cabem em cada grupo.
+- **`%%` (resto da divisão):** informa quantas plantas sobram após a distribuição.
+
+**Quantas plantas ficarão em cada grupo?**
+
+```{r}
+15 %/% 4
+```
+
+O resultado é **3**, ou seja, cada grupo receberá 3 plantas.
+
+**Quantas plantas sobrarão?**
+
+```{r}
+15 %% 4
+```
+
+O resultado também é **3**, mas agora representa as plantas que não foram distribuídas.
+
+Podemos conferir:
+
+```{r}
+4 * 3 + 3
+```
+
+### Vamos praticar!
+
+Agora imagine que temos **17 plantas** para distribuir entre **5 grupos**.
+
+1. Quantas plantas inteiras ficarão em cada grupo?
+2. Quantas plantas sobrarão?
+
+Utilize os operadores `%/%` e `%%` para descobrir.
+
+
+### Exponenciação (`^`)
+
+Para calcular potências no R, podemos utilizar os operadores `^` ou `**`.
+
+```{r}
+3^2
+3**2
+
+5^3
+5**3
+```
+
+Os dois operadores produzem o mesmo resultado.
+
+### Radiciação
+
+Para calcular raízes quadradas, podemos utilizar a função `sqrt()`.
+
+```{r}
+sqrt(144)
+```
+
+Também podemos utilizar a potenciação com expoentes fracionários:
+
+```{r}
+144^(1/2)
+8^(1/3)
+```
+
+### Logaritmos
+
+O R também permite calcular logaritmos de diferentes bases.
+
+A função `log()` calcula, por padrão, o logaritmo natural, enquanto `log10()` calcula o logaritmo na base 10.
+
+```{r}
+log(100)
+log10(100)
+```
+
+Podemos especificar outras bases:
+
+```{r}
+log(8, base = 2)
+```
+
+### Expressões numéricas
+
+Assim como na matemática, podemos combinar diferentes operações em uma mesma expressão.
+
+```{r}
+4*3-9
+```
+
+Os parênteses permitem modificar a ordem das operações.
+
+```{r}
+(4*3)-9
+4*(3-9)
+```
+
+### Sequências de números
+
+No R, podemos criar sequências de números utilizando o operador `:`.
+
+Por exemplo, para gerar uma sequência de 1 a 5, representando as cinco plantas do nosso experimento:
+
+```{r}
+1:5
+```
+
+Também podemos criar sequências maiores ou em ordem decrescente:
+
+```{r}
+0:30
+17:58
+10:-10
+```
+
+Observe que o R identifica automaticamente se a sequência deve ser crescente ou decrescente.
+
+### Combinando sequências e expressões numéricas
+
+Podemos combinar o operador `:` com as operações matemáticas que aprendemos anteriormente.
+
+Observe os exemplos:
+
+```{r}
+5:(2 * 3 + 10)
+```
+
+Primeiro, o R calcula a expressão entre parênteses:
+
+`2 * 3 + 10 = 16`
+
+Depois, gera uma sequência de 5 até 16.
+
+Também podemos realizar operações com todos os elementos de uma sequência:
+
+```{r}
+(4:9) * 2
+```
+
+Nesse caso, o R cria a sequência de 4 a 9 e multiplica cada elemento por 2.
+
+### Vamos praticar!
+
+1. Crie uma sequência que represente 20 plantas numeradas de 1 a 20.
+2. Crie uma sequência decrescente de 15 até 1.
+3. Utilizando uma única expressão, gere uma sequência de 1 a 10 e multiplique todos os valores por 3.
+
+**Desafio:** Observe o comando abaixo e tente descobrir qual será o resultado antes de executá-lo.
+
+```{r}
+5:2 * 3 + 10
+```
+
+Compare com:
+
+```{r}
+5:(2 * 3 + 10)
+```
+
+Por que os resultados são diferentes?
+
+**Vamos praticar!**
+
+Utilizando as alturas das cinco plantas, escreva comandos para:
+
+1. Calcular a soma das alturas das plantas 2, 3 e 5.
+2. Calcular a diferença entre a planta mais alta e a mais baixa.
+3. Calcular a altura média das cinco plantas utilizando uma expressão matemática.
+
+## 3. Criando e armazenando objetos
+
+Até agora, utilizamos o R para realizar operações matemáticas. Mas e se precisássemos utilizar os mesmos valores várias vezes?
+
+No R, podemos armazenar informações em **objetos**, atribuindo um nome a determinado valor ou resultado.
+
+Para criar um objeto, utilizamos o operador de atribuição `<-`.
+
+Vamos armazenar a altura de cada uma das nossas plantas.
+
+```{r}
+planta1 <- 12
+planta2 <- 14
+planta3 <- 11
+planta4 <- 13
+planta5 <- 15
+```
+
+Para consultar o valor armazenado, basta escrever o nome do objeto.
+
+```{r}
+planta1
+```
+
+Também podemos criar e visualizar um objeto utilizando parênteses:
+
+```{r}
+(planta6 <- 16)
+```
+
+E dessa forma:
+```{r}
+planta6 <- 16; planta6
+```
+
+**Atenção:** o R diferencia letras maiúsculas e minúsculas. Portanto, `planta1` e `Planta1` seriam objetos diferentes.
+
+### Operações com objetos
+
+Depois de armazenar os valores, podemos utilizá-los em expressões matemáticas.
+
+Qual é a soma das alturas das plantas 1 e 3?
+
+```{r}
+planta1 + planta3
+```
+
+Qual é a diferença entre as plantas 5 e 2?
+
+```{r}
+planta5 - planta2
+```
+
+Qual é a altura média das cinco plantas?
+
+```{r}
+(planta1+planta2+planta3+planta4+planta5)/5
+```
+
+Também podemos armazenar o resultado dessa operação em um novo objeto.
+
+```{r}
+media_altura <- (planta1+planta2+planta3+planta4+planta5)/5
+
+media_altura
+```
+
+### Removendo objetos
+
+Quando não precisamos mais de um objeto, podemos removê-lo utilizando a função `rm()`.
+
+```{r}
+rm(planta6)
+```
+
+Se tentarmos consultar um objeto que foi removido, o R apresentará uma mensagem de erro.
+
+**Vamos praticar!**
+
+1. Crie um objeto chamado `amplitude` que armazene a diferença de altura entre as plantas 5 e 3.
+2. Consulte o valor armazenado nesse objeto.
+3. Crie um objeto chamado `dobro` que armazene o dobro da altura da planta 4.
+
+## 4. Trabalhando com vetores
+
+Até agora, criamos um objeto para cada planta. Mas imagine que nosso experimento tivesse 100 ou 1.000 plantas. Seria prático criar um objeto diferente para cada observação?
+
+Para armazenar vários valores em um único objeto, podemos utilizar os **vetores**.
+
+Um vetor é uma estrutura que permite armazenar vários elementos do mesmo tipo.
+
+### Criando vetores
+
+Uma das formas mais comuns de criar vetores é utilizando a função `c()`, que combina diferentes valores em um único vetor.
+
+Vamos reunir as alturas das cinco plantas.
+
+```{r}
+altura <- c(12, 14, 11, 13, 15)
+
+altura
+```
+
+Agora, todas as alturas estão armazenadas no objeto `altura`.
+
+Podemos utilizar funções para obter informações sobre esses valores.
+
+```{r}
+length(altura)  # Número de observações
+sum(altura)     # Soma das alturas
+mean(altura)    # Média das alturas
+min(altura)     # Menor altura
+max(altura)     # Maior altura
+sd(altura)      # Desvio padrão amostral
+```
+
+### Criando sequências de números
+
+O operador `:` permite criar sequências de números inteiros consecutivos.
+
+```{r}
+1:5
+0:30
+17:58
+10:-10
+```
+
+Podemos combinar sequências com expressões matemáticas.
+
+```{r}
+5:(2 * 3 + 10)
+(4:9) * 2
+```
+
+```{r}
+vetor <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+class(vetor)
+is.numeric(vetor)
+typeof(vetor)
+seq(0, 90, by = 3)
+rep(vetor, 2)
+sample(1:5, 30, replace = T)
+matrix(1:45, nrow = 5, ncol = 9, byrow = T)
+#rbind e cbind
+#sort()
+
+a = factor(c(1,2,3,4,5,6)); a
+b = factor(c("A","B","C","D")); b
+d = factor(c(1,1,1,2,2,2,3,3,3,4,4,4,"E","E","E","F","F","F"))
+class(d)
+levels(d)
+nlevels(a)
+nlevels(d)
+```
+
+### Consultando elementos de um vetor
+
+Podemos acessar elementos específicos de um vetor utilizando colchetes `[ ]`.
+
+Qual é a altura da terceira planta?
+
+```{r}
+altura[3]
+```
+
+E se quisermos consultar as alturas das plantas 1 e 5?
+
+```{r}
+altura[c(1, 5)]
+```
+
+Também podemos consultar um intervalo de posições.
+
+```{r}
+altura[2:4]
+```
+
+Para excluir uma posição da consulta, utilizamos o sinal negativo.
+
+```{r}
+altura[-3]
+```
+
+Isso não remove o elemento do vetor original. Apenas retorna os demais elementos.
+
+### Operações com vetores
+
+Uma vantagem dos vetores é que podemos realizar operações com todos os seus elementos de uma só vez.
+
+Imagine que queremos converter as alturas das plantas de centímetros para milímetros.
+
+```{r}
+altura * 10
+```
+
+E se quisermos converter as alturas para metros?
+
+```{r}
+altura / 100
+```
+
+Também podemos elevar todos os valores ao quadrado.
+
+```{r}
+altura^2
+```
+
+### Operações entre vetores
+
+Podemos realizar operações entre dois vetores de mesmo comprimento.
+
+Imagine que as mesmas cinco plantas foram medidas novamente após determinado período.
+
+```{r}
+altura_inicial <- c(12, 14, 11, 13, 15)
+
+altura_final <- c(17, 18, 16, 19, 20)
+```
+
+Qual foi o crescimento de cada planta?
+
+```{r}
+crescimento <- altura_final - altura_inicial
+
+crescimento
+```
+
+Qual foi o crescimento médio?
+
+```{r}
+mean(crescimento)
+```
+
+**Vamos praticar!**
+
+1. Consulte a altura da quarta planta.
+2. Consulte as alturas das plantas 2, 3 e 5.
+3. Crie um vetor contendo as alturas das cinco plantas em milímetros.
+4. Calcule a soma das alturas das cinco plantas utilizando `sum()`.
+5. Descubra qual foi o maior crescimento entre as duas avaliações.
+
+## 5. Operadores lógicos e relacionais
+
+Até agora, aprendemos a criar vetores e realizar operações com seus elementos. Mas e se quisermos identificar apenas as plantas que atendem a determinada condição?
+
+Para isso, podemos utilizar os operadores relacionais e lógicos.
+
+### Operadores relacionais
+
+Os operadores relacionais permitem comparar valores. O resultado dessas comparações será sempre `TRUE` (verdadeiro) ou `FALSE` (falso).
+
+| Operador | Significado |
+|:---:|---|
+| `>` | Maior que |
+| `<` | Menor que |
+| `>=` | Maior ou igual a |
+| `<=` | Menor ou igual a |
+| `==` | Igual a |
+| `!=` | Diferente de |
+
+Vamos começar com algumas comparações simples.
+
+```{r}
+5 < 8
+50 > 100
+49 == 7
+49 == 7^2
+```
+
+### Comparando as alturas das plantas
+
+Vamos recuperar o vetor com as alturas das cinco plantas.
+
+```{r}
+altura <- c(12, 14, 11, 13, 15)
+```
+
+**Quais plantas possuem altura superior a 13 cm?**
+
+```{r}
+altura > 13
+```
+
+O R retorna um vetor de valores lógicos, indicando quais observações atendem à condição.
+
+Podemos realizar outras comparações:
+
+```{r}
+altura < 13
+altura >= 13
+altura == 14
+altura != 12
+```
+
+**Mas como visualizar apenas as alturas das plantas que possuem mais de 13 cm?**
+
+Podemos combinar a condição com os colchetes `[ ]`, que aprendemos anteriormente.
+
+```{r}
+altura[altura > 13]
+```
+
+Nesse caso, o R retorna apenas os elementos que atendem à condição.
+
+### Operadores lógicos
+
+Além de comparar valores, podemos trabalhar diretamente com vetores lógicos.
+
+Vamos criar dois vetores:
+
+```{r}
+A <- c(TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE)
+
+B <- c(13, 47, 38, 62, 89, 56, 43, 89, 15)
+```
+
+O vetor `A` contém valores lógicos, enquanto o vetor `B` contém valores numéricos.
+
+Podemos utilizar `A` para selecionar elementos de `B`.
+
+```{r}
+B[A]
+```
+
+O R retorna apenas os valores de `B` que correspondem às posições identificadas como `TRUE` no vetor `A`.
+
+**Quantas posições possuem o valor `TRUE`?**
+
+```{r}
+sum(A)
+```
+
+A função `sum()` também pode ser aplicada a vetores lógicos porque, nesse contexto, o R considera `TRUE` como 1 e `FALSE` como 0.
+
+### Operador de negação (`!`)
+
+O operador `!` inverte os valores lógicos, transformando `TRUE` em `FALSE` e vice-versa.
+
+```{r}
+!A
+```
+
+Podemos utilizar essa operação para selecionar os elementos que não foram selecionados anteriormente.
+
+```{r}
+B[!A]
+```
+
+E quantos valores `FALSE` existem no vetor original?
+
+```{r}
+sum(!A)
+```
+
+### Combinando condições
+
+Também podemos combinar duas ou mais condições.
+
+Os principais operadores são:
+
+| Operador | Significado |
+|:---:|---|
+| `&` | E (ambas as condições devem ser verdadeiras) |
+| `|` | OU (pelo menos uma condição deve ser verdadeira) |
+| `!` | NÃO (inverte a condição) |
+
+Voltando às alturas das cinco plantas:
+
+**Quais plantas possuem altura maior que 12 cm e menor que 15 cm?**
+
+```{r}
+altura > 12 & altura < 15
+```
+
+Para visualizar apenas essas alturas:
+
+```{r}
+altura[altura > 12 & altura < 15]
+```
+
+Agora, quais plantas possuem altura inferior a 12 cm ou superior a 14 cm?
+
+```{r}
+altura[altura < 12 | altura > 14]
+```
+
+### Vamos praticar!
+
+Utilizando o vetor `altura`, responda:
+
+1. Quais plantas possuem altura superior a 12 cm?
+2. Quantas plantas possuem altura igual ou superior a 14 cm?
+3. Quais plantas possuem altura diferente de 13 cm?
+4. Quantas plantas possuem altura inferior a 15 cm?
+5. Quais plantas possuem altura entre 12 e 14 cm, incluindo esses dois valores?
+
+**Desafio:** utilizando os operadores lógicos e relacionais, escreva um comando que retorne apenas as alturas das plantas que são maiores que a média do experimento.
+
+
+## 6. Desafio final: explorando um novo experimento
+
+Agora é sua vez de colocar em prática o que aprendemos!
+
+Em um experimento, foram avaliadas seis plantas, que apresentaram as seguintes alturas:
+
+**18, 21, 19, 24, 20 e 22 cm.**
+
+Utilizando os comandos aprendidos nesta aula, responda às questões abaixo.
+
+### Parte 1. Organizando e explorando os dados
+
+1. Crie um vetor chamado `altura_experimento` contendo as alturas das seis plantas.
+2. Quantas plantas foram avaliadas?
+3. Qual é a altura média das plantas? Armazene o resultado em um objeto chamado `media_experimento`.
+4. Quais são a menor e a maior altura observadas?
+5. Qual é a amplitude das alturas (diferença entre o maior e o menor valor)?
+6. Qual é a altura da quinta planta?
+7. Converta todas as alturas de centímetros para milímetros.
+
+### Parte 2. Selecionando observações
+
+8. Quais plantas apresentam altura superior a 20 cm?
+9. Quantas plantas apresentam altura igual ou superior a 21 cm?
+10. Quais são as alturas das plantas que apresentam valores entre 19 e 22 cm, incluindo esses limites?
+11. Quantas plantas apresentam altura superior à média do experimento?
+
+### Parte 3. Um último desafio!
+
+Imagine que as seis plantas foram avaliadas novamente após 15 dias, apresentando as seguintes alturas:
+
+**23, 25, 26, 28, 27 e 29 cm.**
+
+12. Crie um novo vetor chamado `altura_final` com as alturas da segunda avaliação.
+13. Calcule o crescimento de cada planta entre as duas avaliações.
+14. Qual planta apresentou o maior crescimento?
+15. Qual foi o crescimento médio das seis plantas?
+
+
+<!-- Menu lateral expansível -->
+<script>
+(function() {
+  function init() {
+    const toc = document.querySelector('#sidebar #toc');
+    if (!toc || toc.dataset.treeInit) return;
+    toc.dataset.treeInit = '1';
+    const root = toc.querySelector(':scope > ul');
+    if (!root) return;
+    root.classList.add('nav');
+    const lis = Array.from(toc.querySelectorAll('li'));
+    const directUL = li => Array.from(li.children).find(el => el.tagName === 'UL');
+    const directA = li => Array.from(li.children).find(el => el.tagName === 'A');
+    lis.forEach(li => {
+      if (directUL(li)) li.classList.add('toc-has-children');
+      li.classList.remove('toc-expanded');
+      const a = directA(li);
+      if (a && directUL(li)) {
+        a.addEventListener('click', function(ev) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          li.classList.toggle('toc-expanded');
+        });
+      }
+    });
+    const first = root.querySelector(':scope > li');
+    if (first) first.classList.add('toc-expanded');
+    const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+    let lastSection = '';
+    function onScroll() {
+      let current = null;
+      for (const link of links) {
+        let id;
+        try { id = decodeURIComponent(link.getAttribute('href').slice(1)); }
+        catch(e) { continue; }
+        const target = document.getElementById(id);
+        if (target && target.getBoundingClientRect().top < 180) current = link;
+      }
+      if (!current) return;
+      const section = current.getAttribute('href');
+      if (section === lastSection) return;
+      lastSection = section;
+      lis.forEach(li => li.classList.remove('toc-expanded'));
+      let node = current.parentElement;
+      while (node && node !== toc) {
+        if (node.tagName === 'LI') node.classList.add('toc-expanded');
+        node = node.parentElement;
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    // Inicialmente preserva o primeiro nível aberto.
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+</script>
