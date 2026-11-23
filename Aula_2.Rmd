@@ -1,0 +1,1012 @@
+---
+title: "Primeiros passos no R"
+subtitle: "Aula 2 | Organização, manipulação e visualização de dados"
+author: "DS4PB"
+date: "2026-11-09"
+output:
+  rmdformats::readthedown:
+    toc_depth: 3
+    self_contained: true
+    css: "cayman_sidebar_lab.css"
+---
+
+Na primeira aula, aprendemos a criar objetos, trabalhar com vetores e utilizar operadores lógicos e relacionais.
+
+Agora, vamos aprender a reunir essas informações em tabelas, consultar observações e explorar conjuntos de dados.
+
+## 1. Trabalhando com data frames
+
+Até agora, armazenamos diferentes informações em vetores separados. Mas imagine que queremos reunir os nomes, as idades e outras características de um grupo de estudantes.
+
+Para isso, podemos utilizar um **data frame**, uma estrutura de dados organizada em linhas e colunas, semelhante a uma planilha.
+
+Em um data frame:
+
+- Cada **linha** representa uma observação.
+- Cada **coluna** representa uma variável.
+- As colunas podem armazenar diferentes tipos de dados, como números, caracteres e valores lógicos.
+
+
+### Criando os vetores
+
+Para começar, precisamos coletar três informações de cada participante:
+
+1. **Nome:** como você gostaria de ser identificado?
+2. **Idade:** quantos anos você tem?
+3. **Irmãos:** você possui irmãos? (Sim ou não)
+
+Vamos registrar essas informações em três vetores.
+
+**Primeiro, os nomes:**
+
+```{r}
+nome <- c("x", "x", "x", "x", "x",
+          "x", "x", "x", "x", "x")
+```
+
+**Agora, as idades:**
+
+```{r}
+idade <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+```
+
+**Por último, vamos registrar quem possui irmãos:**
+
+```{r}
+irmaos <- c(TRUE, FALSE, TRUE, TRUE, FALSE,
+            TRUE, FALSE, TRUE, TRUE, FALSE)
+```
+
+Lembre-se:
+
+- `TRUE`: possui irmãos.
+- `FALSE`: não possui irmãos.
+
+### Conferindo nossos dados
+
+Antes de criar a tabela, precisamos verificar se os três vetores possuem o mesmo número de elementos.
+
+```{r}
+length(nome)
+length(idade)
+length(irmaos)
+```
+
+**Vamos pensar:** o que aconteceria se tivéssemos dez nomes, mas apenas nove idades?
+
+### Criando um data frame
+
+Agora, vamos reunir esses três vetores em uma única tabela utilizando a função `data.frame()`.
+
+```{r}
+dados_alunos <- data.frame(nome, idade, irmaos)
+
+dados_alunos
+```
+
+Observe que cada estudante ocupa uma linha, enquanto as informações são organizadas em três colunas.
+
+**Atenção:** os vetores utilizados precisam ter comprimentos compatíveis. Neste exemplo, todos possuem dez elementos, permitindo associar corretamente as informações de cada estudante.
+
+Também podemos construir o data frame diretamente, sem criar os vetores separadamente.
+
+```{r}
+dados_alunos <- data.frame(
+  nome = c("x", "x", "x", "x", "x", "x", "x", "x", "x", "x"),
+  idade = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+  irmaos = c(TRUE, TRUE, TRUE, TRUE, TRUE,
+             TRUE, FALSE, TRUE, TRUE, TRUE)
+)
+
+dados_alunos
+```
+
+As duas formas produzem o mesmo resultado.
+
+### Conhecendo nosso data frame
+
+Depois de criar um data frame, podemos utilizar diferentes funções para conhecer sua estrutura.
+
+```{r}
+dados_alunos
+```
+
+A função `View()` abre os dados em uma janela do RStudio, facilitando sua visualização.
+
+```{r eval=FALSE}
+View(dados_alunos)
+```
+
+Também podemos examinar sua estrutura:
+
+```{r}
+str(dados_alunos)
+```
+
+Essa função mostra o número de observações, as variáveis e os tipos de dados armazenados em cada coluna.
+
+Para obter um resumo das variáveis:
+
+```{r}
+summary(dados_alunos)
+```
+
+Outras funções permitem consultar as dimensões do conjunto de dados:
+
+```{r}
+dim(dados_alunos)   # Número de linhas e colunas
+nrow(dados_alunos)  # Número de linhas
+ncol(dados_alunos)  # Número de colunas
+```
+
+**Vamos praticar!**
+
+1. Quantas observações existem no data frame?
+2. Quantas variáveis foram registradas?
+3. Qual é o tipo de dado armazenado em cada coluna?
+4. Qual é a menor e a maior idade dos estudantes?
+
+### Consultando linhas e colunas
+
+Assim como utilizamos colchetes para consultar elementos de um vetor, podemos utilizá-los para acessar informações de um data frame.
+
+A diferença é que, agora, precisamos considerar duas dimensões:
+
+**`dados[linha, coluna]`**
+
+O primeiro argumento indica a linha e o segundo indica a coluna.
+
+Por exemplo, para consultar o nome do quinto estudante:
+
+```{r}
+dados_alunos[5, 1]
+```
+
+Para consultar todas as informações do décimo estudante:
+
+```{r}
+dados_alunos[10, ]
+```
+
+Observe que deixamos o espaço após a vírgula vazio. Isso significa que queremos consultar todas as colunas daquela linha.
+
+E se quisermos consultar as idades de todos os estudantes?
+
+```{r}
+dados_alunos[, 2]
+```
+
+Nesse caso, deixamos o espaço antes da vírgula vazio, indicando que queremos todas as linhas da segunda coluna.
+
+Também podemos selecionar várias linhas e colunas ao mesmo tempo:
+
+```{r}
+dados_alunos[1:3, 1:2]
+```
+
+O comando retorna as três primeiras linhas e as duas primeiras colunas.
+
+### Acessando variáveis pelo nome
+
+Outra maneira de acessar uma coluna é utilizando o operador `$`.
+
+```{r}
+dados_alunos$nome
+dados_alunos$idade
+dados_alunos$irmaos
+```
+
+Essa forma é bastante utilizada porque permite acessar diretamente uma variável pelo seu nome, sem precisar lembrar sua posição na tabela.
+
+### Selecionando observações com condições
+
+Na primeira aula, aprendemos a utilizar operadores relacionais para identificar valores que atendem a determinadas condições.
+
+Agora, podemos aplicar esses conhecimentos aos data frames.
+
+**Quais estudantes possuem 20 anos ou mais?**
+
+Primeiro, vamos identificar quais observações atendem à condição:
+
+```{r}
+dados_alunos$idade >= 20
+```
+
+Depois, podemos utilizar essa condição para consultar apenas os nomes desses estudantes:
+
+```{r}
+dados_alunos$nome[dados_alunos$idade >= 20]
+```
+
+Também podemos selecionar todas as informações dos estudantes com 20 anos ou mais:
+
+```{r}
+dados_alunos[dados_alunos$idade >= 20, ]
+```
+
+**Qual é a idade da estudante fulana?**
+
+```{r}
+dados_alunos$idade[dados_alunos$nome == "fulana"]
+```
+
+**Quais estudantes não possuem irmãos?**
+
+```{r}
+dados_alunos$nome[dados_alunos$irmaos == FALSE]
+```
+
+Observe que estamos combinando conceitos já conhecidos: vetores, índices, operadores relacionais e valores lógicos.
+
+### Consultando os nomes das variáveis
+
+Podemos consultar os nomes das colunas e das linhas utilizando:
+
+```{r}
+colnames(dados_alunos)
+rownames(dados_alunos)
+```
+
+Também podemos alterar os nomes das colunas.
+
+```{r}
+colnames(dados_alunos) <- c("Nome", "Idade", "Irmaos")
+
+dados_alunos
+```
+
+Observe que o R diferencia letras maiúsculas e minúsculas. Portanto, após a alteração, precisamos utilizar os novos nomes para acessar as variáveis.
+
+```{r}
+dados_alunos$Idade
+```
+
+O R possui dois objetos que permitem acessar as letras do alfabeto:
+
+- `letters`: letras minúsculas (`a` até `z`).
+- `LETTERS`: letras maiúsculas (`A` até `Z`).
+
+Podemos utilizar os colchetes para selecionar apenas algumas letras.
+
+```{r}
+y <- letters[1:10]
+y
+
+z <- LETTERS[1:10]
+z
+```
+
+Observe que os dois comandos retornam as dez primeiras letras do alfabeto, diferenciando apenas as letras maiúsculas e minúsculas.
+
+### Aplicando ao nosso data frame
+
+Imagine que queremos identificar cada estudante com uma letra, em vez de utilizar números nas linhas.
+
+Podemos modificar os nomes das linhas utilizando `rownames()`.
+
+```{r}
+rownames(dados_alunos) <- LETTERS[1:10]
+
+dados_alunos
+```
+
+Agora, cada linha está identificada por uma letra de A até J.
+
+Também podemos consultar uma observação utilizando essa identificação.
+
+```{r}
+dados_alunos["C", ]
+```
+
+### Vamos praticar!
+
+Utilizando o data frame `dados_alunos`, responda:
+
+1. Consulte todas as informações do terceiro estudante.
+2. Consulte apenas os nomes dos cinco primeiros estudantes.
+3. Quais estudantes possuem menos de 20 anos?
+4. Quantos estudantes possuem 21 anos?
+6. Quais estudantes possuem irmãos e têm mais de 20 anos?
+7. Consulte as linhas 2, 4 e 6, mostrando apenas as colunas de nome e idade.
+
+
+## 2. Trabalhando com listas
+
+Na primeira aula, aprendemos que um vetor armazena elementos de um mesmo tipo. Mas e se quisermos guardar números, textos, vetores e até tabelas dentro de um único objeto?
+
+Para isso, podemos utilizar as **listas**.
+
+Uma lista é uma estrutura que permite armazenar diferentes tipos de objetos, inclusive objetos de tamanhos distintos.
+
+### Criando nossa primeira lista
+
+Vamos começar com dois vetores numéricos:
+
+```{r}
+x <- c(3, 2, 3)
+y <- c(7, 7)
+```
+
+Observe que os vetores possuem comprimentos diferentes.
+
+Agora, vamos reuni-los utilizando a função `list()`.
+
+```{r}
+z <- list(x = x, y = y)
+
+z
+```
+
+Nesse exemplo, criamos uma lista com dois elementos, chamados `x` e `y`. Cada elemento contém um vetor.
+
+### Criando uma lista com os dados da turma
+
+Na seção anterior, criamos três vetores contendo os nomes, as idades e a informação sobre irmãos dos participantes.
+
+Vamos reunir essas informações em uma lista.
+
+```{r}
+lista_alunos <- list(nome, idade, irmaos)
+
+lista_alunos
+```
+
+Também podemos atribuir nomes aos elementos da lista, facilitando sua identificação.
+
+```{r}
+lista_alunos_nomeada <- list(
+  Nomes = nome,
+  Idades = idade,
+  Irmaos = irmaos
+)
+
+lista_alunos_nomeada
+```
+
+**Qual é a diferença entre a lista e o data frame que criamos anteriormente?**
+
+No data frame, os dados estão organizados em linhas e colunas, e cada linha corresponde a um estudante.
+
+Na lista, os objetos são armazenados como elementos independentes. Nesse caso, temos três elementos: um vetor com nomes, outro com idades e outro com informações sobre irmãos.
+
+### Listas com diferentes objetos
+
+Uma lista também pode armazenar estruturas mais complexas.
+
+Vamos criar uma lista que reúna uma sequência numérica, nosso data frame, outro conjunto de dados, valores lógicos e um texto.
+
+```{r}
+random_list <- list(
+  78:15,
+  dados_alunos,
+  datasets::iris,
+  c(TRUE, FALSE, TRUE, TRUE),
+  "aula"
+)
+
+random_list
+```
+
+Observe que cada elemento da lista possui uma estrutura diferente.
+
+Podemos utilizar a função `str()` para examinar sua organização.
+
+```{r}
+str(random_list)
+```
+
+### Consultando elementos de uma lista
+
+Assim como fizemos com os vetores, podemos utilizar colchetes para consultar os elementos de uma lista.
+
+Entretanto, existe uma diferença entre utilizar `[ ]` e `[[ ]]`.
+
+**Utilizando colchetes simples `[ ]`:**
+
+```{r}
+lista_alunos[2]
+```
+
+O R retorna uma lista contendo o segundo elemento, que corresponde ao vetor de idades.
+
+**Utilizando colchetes duplos `[[ ]]`:**
+
+```{r}
+lista_alunos[[2]]
+```
+
+Agora, o R retorna diretamente o vetor de idades, sem a estrutura externa da lista.
+
+Podemos verificar essa diferença:
+
+```{r}
+class(lista_alunos[2])
+class(lista_alunos[[2]])
+```
+
+### Consultando informações específicas
+
+Vamos recuperar o primeiro elemento da lista `z`.
+
+```{r}
+z[[1]]
+```
+
+E se quisermos consultar apenas o segundo valor desse vetor?
+
+```{r}
+z[[1]][2]
+```
+
+O primeiro par de colchetes acessa o elemento da lista, enquanto o segundo seleciona uma posição dentro do vetor.
+
+Também podemos consultar informações da lista com os dados da turma.
+
+**Qual é o nome do sétimo estudante?**
+
+```{r}
+lista_alunos[[1]][7]
+```
+
+**Qual é a idade do quarto estudante?**
+
+```{r}
+lista_alunos_nomeada$Idades[4]
+```
+
+Quando os elementos possuem nomes, podemos utilizar o operador `$` para acessá-los diretamente.
+
+```{r}
+lista_alunos_nomeada$Nomes
+```
+
+Podemos ainda consultar elementos da lista `random_list`:
+
+```{r}
+random_list[4]
+random_list[[4]]
+```
+
+Observe novamente a diferença entre os resultados.
+
+### Vamos praticar!
+
+1. Crie dois vetores numéricos de comprimentos diferentes e reúna-os em uma lista.
+2. Consulte o segundo elemento da lista utilizando `[ ]` e `[[ ]]`. Qual é a diferença?
+3. Utilize `lista_alunos_nomeada` para consultar o nome do terceiro estudante.
+4. Consulte a idade do último estudante utilizando a lista.
+5. Acesse o data frame armazenado em `random_list` e consulte suas três primeiras linhas.
+
+
+## 3. Estatística descritiva
+
+Agora que sabemos organizar e consultar dados, vamos aprender algumas funções que permitem resumir as informações de um conjunto de observações.
+
+A **estatística descritiva** reúne métodos utilizados para organizar, resumir e descrever dados, por meio de medidas e representações gráficas.
+
+Vamos utilizar novamente as idades dos participantes da turma.
+
+```{r}
+idade
+```
+
+### Conhecendo nossos dados
+
+Antes de realizar os cálculos, podemos consultar o comprimento e a estrutura do vetor.
+
+```{r}
+length(idade)
+str(idade)
+```
+
+A função `length()` informa o número de elementos, enquanto `str()` apresenta a estrutura do objeto.
+
+### Média
+
+A média aritmética é calculada somando todos os valores e dividindo pelo número de observações.
+
+No R, podemos utilizar a função `mean()`.
+
+**Qual é a idade média dos participantes da turma?**
+
+```{r}
+mean(idade)
+```
+
+### Mediana
+
+A mediana é o valor central de um conjunto de dados ordenados. Quando o número de observações é par, corresponde à média dos dois valores centrais.
+
+Para calculá-la, utilizamos `median()`.
+
+```{r}
+median(idade)
+```
+
+Compare o resultado da mediana com a média. Os valores são iguais?
+
+### Desvio padrão
+
+O desvio padrão é uma medida de dispersão que indica o quanto os valores tendem a variar em relação à média.
+
+Para calcular o desvio padrão amostral, utilizamos a função `sd()`.
+
+```{r}
+sd(idade)
+```
+
+Quanto maior o desvio padrão, maior tende a ser a dispersão dos valores em torno da média.
+
+### Valores únicos
+
+A função `unique()` retorna os valores distintos encontrados em um vetor.
+
+**Quais idades estão presentes na nossa turma?**
+
+```{r}
+unique(idade)
+```
+
+Também podemos descobrir quantos valores diferentes existem:
+
+```{r}
+length(unique(idade))
+```
+
+### Resumo dos dados
+
+Podemos utilizar a função `summary()` para obter diferentes medidas descritivas de uma só vez.
+
+```{r}
+summary(idade)
+```
+
+O R apresenta o valor mínimo, o primeiro quartil, a mediana, a média, o terceiro quartil e o valor máximo.
+
+Também podemos aplicar essa função ao nosso data frame.
+
+```{r}
+summary(dados_alunos)
+```
+
+Observe que o resultado depende do tipo de dado armazenado em cada coluna.
+
+### Vamos praticar!
+
+Utilizando as idades da turma, responda:
+
+1. Qual é a idade média dos participantes?
+2. Qual é a mediana das idades?
+3. Qual é o desvio padrão amostral?
+4. Qual é a menor e a maior idade?
+5. Quais são as idades diferentes presentes no conjunto de dados?
+6. Quantos participantes possuem idade superior à média?
+7. Qual é a amplitude das idades?
+8. O que acontece com a média e a mediana se substituirmos a maior idade por 60 anos? Compare os resultados antes e depois da alteração.
+
+## 4. Estruturas condicionais e de repetição
+
+Até agora, aprendemos a armazenar, organizar e consultar dados. Mas também podemos criar códigos que tomam decisões ou executam uma mesma operação várias vezes.
+
+Para isso, vamos conhecer as estruturas `if/else`, `for` e `while`.
+
+### Estruturas condicionais: `if` e `else`
+
+Imagine que estamos planejando um experimento com três doses de nitrogênio: 50, 100 e 150 kg/ha.
+
+Queremos criar um código que identifique qual é a menor dose.
+
+Vamos armazenar essas informações em um vetor.
+
+```{r}
+vetor_doses <- c(50, 100, 150)
+
+vetor_doses
+```
+
+Já sabemos que podemos utilizar a função `min()` para encontrar o menor valor.
+
+```{r}
+min(vetor_doses)
+```
+
+Mas e se quisermos ensinar o R a tomar essa decisão por meio de condições?
+
+Para isso, podemos utilizar:
+
+- `if`: executa um comando quando determinada condição é verdadeira.
+- `else if`: verifica uma nova condição quando a anterior não foi atendida.
+- `else`: executa um comando quando nenhuma das condições anteriores foi atendida.
+
+Vamos começar com um exemplo simples.
+
+```{r}
+dose <- 100
+
+if (dose > 80) {
+  print("Dose superior a 80 kg/ha")
+} else {
+  print("Dose igual ou inferior a 80 kg/ha")
+}
+```
+
+Observe que o R verifica a condição entre parênteses. Se ela for verdadeira, executa o primeiro bloco de código. Caso contrário, executa o segundo.
+
+### Combinando diferentes condições
+
+Agora, vamos criar um código que identifique a menor das três doses.
+
+```{r}
+vetor_doses <- c(50, 100, 150)
+
+if (vetor_doses[1] <= vetor_doses[2] &&
+    vetor_doses[1] <= vetor_doses[3]) {
+
+  print(vetor_doses[1])
+
+} else if (vetor_doses[2] <= vetor_doses[1] &&
+           vetor_doses[2] <= vetor_doses[3]) {
+
+  print(vetor_doses[2])
+
+} else {
+
+  print(vetor_doses[3])
+
+}
+```
+
+Nesse exemplo, o operador `&&` verifica se duas condições são verdadeiras. Como estamos comparando valores individuais, ele é apropriado para a estrutura `if`.
+
+Observe também o uso de `<=`, que permite considerar situações em que duas doses possuem o mesmo valor.
+
+**Vamos experimentar!**
+
+Substitua o vetor original por cada uma das opções abaixo e execute novamente o código.
+
+```{r}
+vetor_doses <- c(200, 120, 150)
+```
+
+```{r}
+vetor_doses <- c(200, 300, 110)
+```
+
+O código continua identificando a menor dose?
+
+### Estruturas de repetição: `for`
+
+Imagine que queremos descobrir os dez primeiros múltiplos de 6.
+
+Podemos realizar as operações manualmente:
+
+```{r}
+numero_base <- 6
+
+numero_base * 1
+numero_base * 2
+numero_base * 3
+numero_base * 4
+numero_base * 5
+numero_base * 6
+numero_base * 7
+numero_base * 8
+numero_base * 9
+numero_base * 10
+```
+
+Mas e se quiséssemos calcular os primeiros 100 múltiplos? Precisaríamos escrever 100 operações?
+
+Para evitar essa repetição, podemos utilizar o `for`.
+
+A estrutura `for` permite executar um bloco de código para cada elemento de uma sequência.
+
+```{r}
+numero_base <- 6
+multiplicadores <- 10
+
+for (i in 1:multiplicadores) {
+
+  multiplo <- numero_base * i
+
+  print(multiplo)
+
+}
+```
+
+**Vamos entender o que aconteceu:**
+
+1. A variável `i` começa com o valor 1.
+2. O R calcula `numero_base * i`.
+3. O resultado é apresentado com `print()`.
+4. A variável `i` assume o próximo valor da sequência.
+5. O processo continua até o último multiplicador.
+
+Observe que `i` é uma variável utilizada para controlar a repetição.
+
+Podemos modificar os valores sem precisar reescrever o código.
+
+```{r}
+numero_base <- 9
+multiplicadores <- 20
+
+for (i in 1:multiplicadores) {
+  multiplo <- numero_base * i
+  print(multiplo)
+}
+```
+
+Experimente também:
+
+```{r}
+numero_base <- 17
+multiplicadores <- 8
+
+for (i in 1:multiplicadores) {
+  multiplo <- numero_base * i
+  print(multiplo)
+}
+```
+
+### Vamos praticar!
+
+1. Utilize um `for` para apresentar os dez primeiros múltiplos de 4.
+2. Modifique o código para apresentar os cinco primeiros múltiplos de 12.
+3. Crie um `for` que apresente o quadrado dos números de 1 a 10.
+
+### Estruturas de repetição: `while`
+
+Assim como o `for`, a estrutura `while` permite repetir comandos.
+
+Entretanto, existe uma diferença:
+
+- `for`: percorre uma sequência de elementos.
+- `while`: executa comandos enquanto determinada condição for verdadeira.
+
+Vamos começar com um exemplo simples.
+
+```{r}
+i <- 1
+
+while (i <= 5) {
+
+  print(i)
+
+  i <- i + 1
+
+}
+```
+
+Nesse exemplo, o R apresenta os valores de 1 a 5.
+
+A cada repetição, a variável `i` aumenta uma unidade. Quando `i` se torna maior que 5, a condição deixa de ser verdadeira e a repetição termina.
+
+**Atenção:** é importante que a condição possa se tornar falsa em algum momento. Caso contrário, o código poderá continuar executando indefinidamente.
+
+### Exemplo 1. Somando valores iguais
+
+Imagine que temos dois vetores numéricos e queremos somar seus elementos, posição por posição, enquanto os valores correspondentes forem iguais.
+
+```{r}
+vetor_x <- seq(0, 100, by = 5)
+
+vetor_y <- c(seq(0, 50, by = 5), 10)
+
+i <- 1
+
+while (i <= min(length(vetor_x), length(vetor_y)) &&
+       vetor_x[i] == vetor_y[i]) {
+
+  soma <- vetor_x[i] + vetor_y[i]
+
+  print(soma)
+
+  i <- i + 1
+
+}
+```
+
+Observe que a repetição termina quando os valores deixam de ser iguais ou quando chegamos ao final de um dos vetores.
+
+### Exemplo 2. Multiplicando valores sob uma condição
+
+Agora, queremos multiplicar os elementos de dois vetores enquanto o valor do segundo vetor for maior que o correspondente no primeiro.
+
+```{r}
+vetor_x <- seq(0, 100, by = 5)
+
+vetor_y <- c(1, 6, 11, 16, 21, 26, 31, 2)
+
+i <- 1
+
+while (i <= min(length(vetor_x), length(vetor_y)) &&
+       vetor_x[i] < vetor_y[i]) {
+
+  multiplicacao <- vetor_x[i] * vetor_y[i]
+
+  print(multiplicacao)
+
+  i <- i + 1
+
+}
+```
+
+Nesse caso, a repetição é interrompida assim que a condição deixa de ser atendida.
+
+### Exemplo 3. Somando dois vetores
+
+Vamos utilizar dois vetores com sequências em sentidos opostos.
+
+```{r}
+vetor_a <- 1:10
+vetor_b <- 9:0
+
+i <- 1
+
+while (i <= min(length(vetor_a), length(vetor_b)) &&
+       vetor_a[i] < vetor_b[i]) {
+
+  soma <- vetor_a[i] + vetor_b[i]
+
+  print(soma)
+
+  i <- i + 1
+
+}
+```
+
+**Vamos praticar!**
+
+1. Crie um `while` que apresente os números de 1 a 10.
+2. Modifique o código para apresentar apenas os números de 1 a 5.
+3. Crie um `while` que apresente os múltiplos de 3 enquanto o resultado for menor ou igual a 30.
+
+## 5. Criando nossas próprias funções
+
+Ao longo do curso, utilizamos diferentes funções do R, como `mean()`, `sum()`, `min()` e `length()`.
+
+Mas também podemos criar nossas próprias funções!
+
+Uma função permite reunir comandos que realizam determinada tarefa. Depois de criada, podemos executá-la quantas vezes quisermos, utilizando diferentes valores.
+
+Para criar uma função, utilizamos a estrutura:
+
+```{r eval=FALSE}
+nome_funcao <- function(argumentos) {
+
+  # Comandos que serão executados
+
+  return(resultado)
+
+}
+```
+
+### Exemplo 1. Criando uma função para calcular múltiplos
+
+Anteriormente, utilizamos o `for` para calcular os múltiplos de um número.
+
+Agora, vamos transformar aquele código em uma função.
+
+```{r}
+multiplos <- function(numero_base, multiplicadores) {
+
+  multiplo <- c()
+
+  for (i in 1:multiplicadores) {
+
+    multiplo[i] <- numero_base * i
+
+  }
+
+  return(multiplo)
+
+}
+```
+
+Observe que a função recebe dois argumentos:
+
+- `numero_base`: número para o qual queremos calcular os múltiplos.
+- `multiplicadores`: quantidade de múltiplos que queremos obter.
+
+A função `return()` indica qual resultado será devolvido ao final da execução.
+
+Agora, podemos utilizar nossa função com diferentes valores.
+
+```{r}
+multiplos(9, 20)
+
+multiplos(17, 8)
+
+multiplos(6, 10)
+```
+
+Assim, não precisamos reescrever o `for` sempre que quisermos realizar a mesma operação.
+
+### Exemplo 2. Criando uma função para somar vetores
+
+Vamos criar uma função que receba dois vetores e some seus elementos correspondentes enquanto os valores forem iguais.
+
+```{r}
+vetor_x <- seq(0, 100, by = 5)
+
+vetor_y <- c(seq(0, 50, by = 5), 10)
+```
+
+Agora, vamos construir a função.
+
+```{r}
+soma <- function(conjunto_1, conjunto_2) {
+
+  vetor_soma <- c()
+
+  i <- 1
+
+  while (i <= min(length(conjunto_1), length(conjunto_2)) &&
+         conjunto_1[i] == conjunto_2[i]) {
+
+    vetor_soma[i] <- conjunto_1[i] + conjunto_2[i]
+
+    i <- i + 1
+
+  }
+
+  return(vetor_soma)
+
+}
+```
+
+Vamos executar:
+
+```{r}
+soma(vetor_x, vetor_y)
+```
+
+### Exemplo 3. Criando uma função para multiplicar vetores
+
+Agora, criaremos uma função que multiplique os elementos correspondentes de dois vetores enquanto os valores do segundo forem maiores que os do primeiro.
+
+```{r}
+sequencia_r <- seq(0, 100, by = 5)
+
+sequencia_s <- c(1, 6, 11, 16, 21, 26, 31, 2)
+```
+
+Vamos criar a função:
+
+```{r}
+multiplicacao <- function(vetor_1, vetor_2) {
+
+  vetor_multiplicacao <- c()
+
+  i <- 1
+
+  while (i <= min(length(vetor_1), length(vetor_2)) &&
+         vetor_1[i] < vetor_2[i]) {
+
+    vetor_multiplicacao[i] <- vetor_1[i] * vetor_2[i]
+
+    i <- i + 1
+
+  }
+
+  return(vetor_multiplicacao)
+
+}
+```
+
+Executando nossa função:
+
+```{r}
+multiplicacao(sequencia_r, sequencia_s)
+```
+
+### Vamos praticar!
+
+1. Crie uma função chamada `dobro()` que receba um número e retorne o dobro desse valor.
+2. Crie uma função chamada `quadrado()` que receba um número e retorne seu quadrado.
+3. Utilize a função `multiplos()` para calcular os 15 primeiros múltiplos de 7.
+4. Modifique a função `multiplos()` para retornar os resultados multiplicados por 2.
+
+
+
+
