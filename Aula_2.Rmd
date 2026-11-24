@@ -1010,3 +1010,1178 @@ multiplicacao(sequencia_r, sequencia_s)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+## 6. Visualização de dados com ggplot2
+
+Até agora, aprendemos a armazenar, organizar, consultar e resumir dados no R. Agora, vamos aprender a representar essas informações por meio de gráficos.
+
+Nesta parte da aula, utilizaremos um conjunto de dados reais de pinguins para explorar diferentes tipos de gráficos e suas possibilidades de personalização.
+
+### 6.1. Conhecendo nosso conjunto de dados
+
+Vamos utilizar o conjunto de dados *Palmer Penguins*, que reúne informações de 344 pinguins de três espécies: Adélie, Chinstrap e Gentoo.
+
+Os dados incluem características corporais, como comprimento e profundidade do bico, comprimento da nadadeira e massa corporal, além de informações sobre espécie, ilha, sexo e ano.
+
+#### Carregando os dados
+
+Primeiro, precisamos instalar os pacotes que serão utilizados. A instalação deve ser realizada apenas uma vez no computador.
+
+```{r instalacao_pacotes, eval=FALSE}
+install.packages("palmerpenguins")
+install.packages("ggplot2")
+install.packages("gridExtra")
+```
+
+Agora, vamos carregar os dados e manter os nomes das variáveis em português.
+
+```{r carregando_pinguins}
+pinguins <- as.data.frame(palmerpenguins::penguins)
+
+names(pinguins) <- c(
+  "especie",
+  "ilha",
+  "comprimento_bico",
+  "profundidade_bico",
+  "comprimento_nadadeira",
+  "massa_corporal",
+  "sexo",
+  "ano"
+)
+
+head(pinguins)
+```
+
+#### Explorando os dados
+
+Antes de construir os gráficos, vamos conhecer a estrutura do conjunto de dados.
+
+```{r estrutura_pinguins}
+str(pinguins)
+
+dim(pinguins)
+
+colnames(pinguins)
+
+summary(pinguins)
+```
+
+Podemos também visualizar os dados no formato de uma tabela.
+
+```{r visualizar_pinguins, eval=FALSE}
+View(pinguins)
+```
+
+A função `View()` abre uma janela para visualização dos dados no RStudio. Por isso, vamos executá-la diretamente no Console, sem incluí-la na compilação do documento.
+
+#### Identificando valores ausentes
+
+Em conjuntos de dados reais, algumas informações podem estar ausentes. No R, esses valores são representados por `NA`.
+
+Vamos verificar quantos valores ausentes existem em cada variável.
+
+```{r valores_ausentes_pinguins}
+colSums(is.na(pinguins))
+```
+
+A função `is.na()` identifica os valores ausentes, enquanto `colSums()` realiza a soma para cada coluna.
+
+Para simplificar os próximos exemplos, vamos manter apenas as observações completas.
+
+```{r removendo_na_pinguins}
+pinguins <- na.omit(pinguins)
+
+dim(pinguins)
+```
+
+A função `na.omit()` remove todas as linhas que possuem pelo menos um valor ausente.
+
+### 6.2. Introdução ao ggplot2
+
+O pacote `ggplot2` permite construir gráficos combinando diferentes camadas, adicionadas por meio do sinal `+`.
+
+Vamos começar carregando o pacote.
+
+```{r carregar_ggplot2}
+library(ggplot2)
+```
+
+#### Primeira camada: definindo os dados
+
+Vamos investigar a relação entre o comprimento da nadadeira e a massa corporal dos pinguins.
+
+```{r ggplot_primeira_camada}
+ggplot(
+  data = pinguins,
+  aes(
+    x = comprimento_nadadeira,
+    y = massa_corporal
+  )
+)
+```
+
+Nesse exemplo:
+
+- `ggplot()`: inicia a construção do gráfico.
+- `data = pinguins`: informa qual conjunto de dados será utilizado.
+- `aes()`: define as variáveis que serão representadas nos eixos.
+- `x`: variável do eixo horizontal.
+- `y`: variável do eixo vertical.
+
+Observe que ainda não aparecem pontos, pois precisamos informar como os dados serão representados.
+
+#### Segunda camada: adicionando os pontos
+
+Vamos acrescentar `geom_point()`.
+
+```{r ggplot_segunda_camada}
+ggplot(
+  data = pinguins,
+  aes(
+    x = comprimento_nadadeira,
+    y = massa_corporal
+  )
+) +
+  geom_point()
+```
+
+Agora temos um gráfico de dispersão.
+
+Observe que cada ponto representa um pinguim. A posição do ponto depende do comprimento da nadadeira e da massa corporal do indivíduo.
+
+#### Terceira camada: nomeando os eixos e o gráfico
+
+Podemos utilizar a função `labs()` para adicionar títulos.
+
+```{r ggplot_terceira_camada}
+ggplot(
+  data = pinguins,
+  aes(
+    x = comprimento_nadadeira,
+    y = massa_corporal
+  )
+) +
+  geom_point(size = 2.5) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    title = "Gráfico de dispersão"
+  )
+```
+
+Observe que utilizamos o sinal `+` para acrescentar uma nova camada.
+
+#### Quarta camada: modificando o tema
+
+O `ggplot2` possui diferentes temas que modificam a aparência do gráfico.
+
+Vamos experimentar alguns deles.
+
+**Tema padrão**
+
+```{r ggplot_tema_padrao}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal)) +
+  geom_point(size = 2.5)
+```
+
+**Tema claro: `theme_light()`**
+
+```{r ggplot_tema_light}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal)) +
+  geom_point(size = 2.5) +
+  theme_light()
+```
+
+**Tema minimalista: `theme_minimal()`**
+
+```{r ggplot_tema_minimal}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal)) +
+  geom_point(size = 2.5) +
+  theme_minimal()
+```
+
+**Tema escuro: `theme_dark()`**
+
+```{r ggplot_tema_dark}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal)) +
+  geom_point(size = 2.5) +
+  theme_dark()
+```
+
+Qual desses temas vocês preferem?
+
+#### Quinta camada: identificando os grupos por cores
+
+Nosso conjunto de dados contém pinguins de diferentes ilhas.
+
+Podemos utilizar cores para identificar cada uma delas.
+
+```{r ggplot_cores_ilhas}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal,
+           color = ilha)) +
+  geom_point(size = 2.5) +
+  theme_light()
+```
+
+Observe que adicionamos `color = ilha` dentro de `aes()`.
+
+Assim, informamos ao R que a cor dos pontos deve variar conforme a ilha.
+
+O `ggplot2` cria automaticamente uma legenda para identificar os grupos.
+
+#### Sexta camada: personalizando o gráfico
+
+Podemos utilizar a função `theme()` para modificar elementos específicos.
+
+```{r ggplot_personalizacao}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal,
+           color = ilha)) +
+  geom_point(size = 2.5) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Ilha",
+    title = "Relação entre características corporais"
+  ) +
+  theme_light() +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(
+      size = 11,
+      face = "bold"
+    ),
+    plot.title = element_text(
+      color = "black",
+      size = 14,
+      face = "bold",
+      hjust = 0.5
+    )
+  )
+```
+
+Nesse exemplo:
+
+- `legend.position`: define a posição da legenda.
+- `legend.title`: altera a aparência do título da legenda.
+- `plot.title`: altera a aparência do título do gráfico.
+- `face = "bold"`: coloca o texto em negrito.
+- `hjust = 0.5`: centraliza o título.
+
+Podemos consultar outras opções de personalização utilizando:
+
+```{r ajuda_theme, eval=FALSE}
+help("theme")
+```
+
+### 6.4. Adicionando uma linha de regressão
+
+Também podemos acrescentar uma linha de regressão ao gráfico de dispersão.
+
+Para isso, utilizamos `geom_smooth()`.
+
+```{r ggplot_regressao}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal)) +
+  geom_point(size = 2.5) +
+  geom_smooth(method = "lm") +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    title = "Relação entre comprimento da nadadeira e massa corporal"
+  ) +
+  theme_light()
+```
+
+O argumento `method = "lm"` indica que queremos ajustar uma regressão linear.
+
+A faixa sombreada ao redor da reta representa, por padrão, um intervalo de confiança de 95% para a média estimada.
+
+Podemos retirar essa faixa utilizando `se = FALSE`.
+
+```{r ggplot_regressao_sem_intervalo}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal)) +
+  geom_point(size = 2.5, color = "gray50") +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "#7C1A23"
+  ) +
+  theme_light()
+```
+
+Se quisermos identificar as diferentes ilhas, podemos manter as cores dos pontos e acrescentar uma única reta para o conjunto de observações.
+
+```{r ggplot_regressao_ilhas}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal)) +
+  geom_point(aes(color = ilha), size = 2.5) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "black"
+  ) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Ilha",
+    title = "Gráfico de dispersão com regressão"
+  ) +
+  theme_light()
+```
+
+### 6.5. Adicionando legendas, subtítulos e fontes
+
+Podemos acrescentar outras informações ao gráfico utilizando `labs()`.
+
+```{r ggplot_legenda_fonte}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal,
+           color = ilha)) +
+  geom_point(size = 2.5) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Ilha",
+    title = "Características corporais dos pinguins",
+    subtitle = "Relação entre comprimento da nadadeira e massa corporal",
+    caption = "Fonte: Palmer Penguins"
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(
+      size = 14,
+      face = "bold",
+      hjust = 0.5
+    ),
+    plot.caption = element_text(
+      size = 9,
+      hjust = 1
+    )
+  )
+```
+
+Também podemos utilizar a função `ggtitle()` para adicionar títulos e subtítulos.
+
+```{r ggplot_ggtitle}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal,
+           color = ilha)) +
+  geom_point(size = 2.5) +
+  theme_light() +
+  ggtitle(
+    "Gráfico de dispersão",
+    subtitle = "Comprimento da nadadeira e massa corporal"
+  )
+```
+
+### 6.6. Modificando os limites dos eixos
+
+Em algumas situações, queremos observar apenas uma região específica do gráfico.
+
+Podemos utilizar `coord_cartesian()` para aproximar a visualização.
+
+```{r ggplot_limites_eixos}
+ggplot(pinguins,
+       aes(x = comprimento_nadadeira,
+           y = massa_corporal,
+           color = ilha)) +
+  geom_point(size = 2.5) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Ilha"
+  ) +
+  theme_light() +
+  coord_cartesian(
+    xlim = c(180, 200),
+    ylim = c(3000, 4000)
+  )
+```
+
+Nesse exemplo, estamos visualizando apenas a região entre 180 e 200 mm no eixo horizontal e entre 3.000 e 4.000 g no eixo vertical.
+
+Também existem as funções `xlim()` e `ylim()`, mas elas podem descartar observações fora dos limites especificados.
+
+Por isso, quando queremos apenas aproximar uma região do gráfico, podemos utilizar `coord_cartesian()`.
+
+### 6.7. Organizando dois gráficos lado a lado
+
+Podemos salvar gráficos em objetos e apresentá-los lado a lado.
+
+Para isso, vamos utilizar o pacote `gridExtra`.
+
+```{r carregar_gridextra}
+library(gridExtra)
+```
+
+Primeiro, vamos construir o gráfico completo.
+
+```{r grafico_completo}
+grafico <- ggplot(pinguins,
+                  aes(x = comprimento_nadadeira,
+                      y = massa_corporal,
+                      color = ilha)) +
+  geom_point(size = 2.5) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Ilha",
+    title = "Gráfico completo"
+  ) +
+  theme_light()
+```
+
+Agora, vamos construir outro gráfico, mostrando apenas uma região dos dados.
+
+```{r grafico_aproximado}
+grafico_zoom <- ggplot(pinguins,
+                       aes(x = comprimento_nadadeira,
+                           y = massa_corporal,
+                           color = ilha)) +
+  geom_point(size = 2.5) +
+  coord_cartesian(
+    xlim = c(180, 200),
+    ylim = c(3000, 4000)
+  ) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Ilha",
+    title = "Região ampliada"
+  ) +
+  theme_light()
+```
+
+Vamos apresentar os gráficos lado a lado.
+
+```{r graficos_lado_a_lado, fig.width=10, fig.height=4.5}
+grid.arrange(grafico, grafico_zoom, ncol = 2)
+```
+
+O argumento `ncol = 2` indica que queremos organizar os gráficos em duas colunas.
+
+Experimente substituir por `ncol = 1`. O que acontece?
+
+### 6.8. Representando médias com stat_summary()
+
+Também podemos utilizar o `ggplot2` para representar medidas estatísticas.
+
+Imagine que queremos comparar a massa corporal média dos pinguins entre as diferentes ilhas.
+
+```{r ggplot_medias_ilhas}
+ggplot(pinguins,
+       aes(x = ilha,
+           y = massa_corporal)) +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    size = 4,
+    color = "#7C1A23"
+  ) +
+  labs(
+    x = "Ilha",
+    y = "Massa corporal média (g)",
+    title = "Massa corporal média por ilha"
+  ) +
+  theme_light()
+```
+
+Nesse exemplo:
+
+- `fun = mean`: informa que queremos calcular a média.
+- `geom = "point"`: representa cada média por um ponto.
+- `size = 4`: define o tamanho dos pontos.
+
+Também podemos conectar as médias por uma linha.
+
+```{r ggplot_medias_linha}
+ggplot(pinguins,
+       aes(x = ilha,
+           y = massa_corporal,
+           group = 1)) +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    size = 4,
+    color = "black"
+  ) +
+  stat_summary(
+    fun = mean,
+    geom = "line",
+    color = "#7C1A23",
+    linewidth = 1
+  ) +
+  labs(
+    x = "Ilha",
+    y = "Massa corporal média (g)",
+    title = "Comparação das médias entre ilhas"
+  ) +
+  theme_light()
+```
+
+Nesse caso, `group = 1` permite conectar os pontos por uma única linha. Como as ilhas são categorias, a linha serve apenas como recurso visual, não representando uma sequência temporal ou contínua.
+
+### 6.9. Gráficos de barras
+
+Os gráficos de barras são úteis para representar contagens ou comparar valores entre categorias.
+
+Vamos começar verificando quantos pinguins existem em cada ilha.
+
+```{r ggplot_barras_ilhas}
+ggplot(pinguins,
+       aes(x = ilha)) +
+  geom_bar(
+    color = "black",
+    fill = "#7C1A23"
+  ) +
+  labs(
+    x = "Ilha",
+    y = "Número de pinguins",
+    title = "Quantidade de pinguins por ilha"
+  ) +
+  theme_light()
+```
+
+A função `geom_bar()` conta automaticamente o número de observações em cada categoria.
+
+#### Gráfico de barras agrupadas
+
+Também podemos dividir as barras de acordo com o ano de observação.
+
+```{r ggplot_barras_agrupadas}
+ggplot(pinguins,
+       aes(x = ilha,
+           fill = factor(ano))) +
+  geom_bar(position = "dodge") +
+  labs(
+    x = "Ilha",
+    y = "Número de pinguins",
+    fill = "Ano",
+    title = "Quantidade de pinguins por ilha e ano"
+  ) +
+  theme_light()
+```
+
+O argumento `position = "dodge"` posiciona as barras lado a lado.
+
+Observe também que utilizamos `factor(ano)` para tratar os anos como categorias.
+
+### 6.10. Histogramas
+
+O histograma permite visualizar a distribuição de uma variável quantitativa.
+
+Vamos investigar a distribuição da massa corporal dos pinguins.
+
+#### Histograma de frequências
+
+```{r ggplot_histograma}
+ggplot(pinguins,
+       aes(x = massa_corporal)) +
+  geom_histogram(
+    bins = 20,
+    color = "black",
+    fill = "gray80"
+  ) +
+  labs(
+    x = "Massa corporal (g)",
+    y = "Frequência",
+    title = "Distribuição da massa corporal"
+  ) +
+  theme_light()
+```
+
+O argumento `bins = 20` define a quantidade de intervalos do histograma.
+
+Experimente modificar esse valor para 10 ou 30 e observe como a aparência do gráfico muda.
+
+#### Histograma por densidade
+
+Também podemos representar a densidade em vez da frequência absoluta.
+
+```{r ggplot_histograma_densidade}
+ggplot(pinguins,
+       aes(x = massa_corporal)) +
+  geom_histogram(
+    aes(y = after_stat(density)),
+    bins = 20,
+    color = "black",
+    fill = "gray80"
+  ) +
+  labs(
+    x = "Massa corporal (g)",
+    y = "Densidade",
+    title = "Distribuição da massa corporal"
+  ) +
+  theme_light()
+```
+
+#### Adicionando uma curva de densidade
+
+Podemos acrescentar uma curva suavizada à distribuição dos dados.
+
+```{r ggplot_curva_densidade}
+ggplot(pinguins,
+       aes(x = massa_corporal)) +
+  geom_histogram(
+    aes(y = after_stat(density)),
+    bins = 20,
+    color = "white",
+    fill = "gray80"
+  ) +
+  geom_density(
+    color = "#7C1A23",
+    linewidth = 1
+  ) +
+  labs(
+    x = "Massa corporal (g)",
+    y = "Densidade",
+    title = "Histograma com curva de densidade"
+  ) +
+  theme_light()
+```
+
+Observe que adicionamos a curva com `geom_density()` utilizando o sinal `+`.
+
+### 6.11. Boxplot
+
+O boxplot, também chamado de diagrama de caixa, permite comparar a distribuição de uma variável quantitativa entre diferentes grupos.
+
+Vamos comparar a massa corporal dos pinguins entre as ilhas.
+
+```{r ggplot_boxplot_ilhas}
+ggplot(pinguins,
+       aes(x = ilha,
+           y = massa_corporal)) +
+  geom_boxplot(
+    fill = "#7C1A23",
+    color = "black"
+  ) +
+  labs(
+    x = "Ilha",
+    y = "Massa corporal (g)",
+    title = "Massa corporal dos pinguins por ilha"
+  ) +
+  theme_light()
+```
+
+Podemos também utilizar cores diferentes para identificar cada ilha.
+
+```{r ggplot_boxplot_cores}
+ggplot(pinguins,
+       aes(x = ilha,
+           y = massa_corporal,
+           fill = ilha)) +
+  geom_boxplot() +
+  labs(
+    x = "Ilha",
+    y = "Massa corporal (g)",
+    title = "Distribuição da massa corporal por ilha"
+  ) +
+  theme_light() +
+  theme(legend.position = "none")
+```
+
+A legenda foi retirada porque os nomes das ilhas já aparecem no eixo horizontal.
+
+#### Acrescentando as observações individuais
+
+Podemos combinar o boxplot com os valores individuais utilizando `geom_jitter()`.
+
+```{r ggplot_boxplot_pontos}
+ggplot(pinguins,
+       aes(x = ilha,
+           y = massa_corporal,
+           fill = ilha)) +
+  geom_boxplot(alpha = 0.5) +
+  geom_jitter(
+    width = 0.15,
+    size = 1.5,
+    alpha = 0.6
+  ) +
+  labs(
+    x = "Ilha",
+    y = "Massa corporal (g)",
+    title = "Massa corporal dos pinguins por ilha"
+  ) +
+  theme_light() +
+  theme(legend.position = "none")
+```
+
+A função `geom_jitter()` adiciona pequenos deslocamentos horizontais aos pontos para reduzir a sobreposição entre observações.
+
+### 6.12. Outras funções estatísticas
+
+Além dos gráficos, podemos utilizar algumas funções para explorar as características dos pinguins.
+
+Vamos trabalhar com o comprimento da nadadeira e a massa corporal.
+
+**Média**
+
+```{r estatistica_media}
+mean(pinguins$comprimento_nadadeira)
+```
+
+**Variância**
+
+```{r estatistica_variancia}
+var(pinguins$comprimento_nadadeira)
+```
+
+**Desvio padrão**
+
+```{r estatistica_desvio}
+sd(pinguins$comprimento_nadadeira)
+```
+
+**Covariância entre duas variáveis**
+
+```{r estatistica_covariancia}
+cov(
+  pinguins$comprimento_nadadeira,
+  pinguins$massa_corporal
+)
+```
+
+**Coeficiente de correlação**
+
+```{r estatistica_correlacao}
+cor(
+  pinguins$comprimento_nadadeira,
+  pinguins$massa_corporal
+)
+```
+
+**Coeficiente de variação (%)**
+
+```{r estatistica_cv}
+(
+  sd(pinguins$comprimento_nadadeira) /
+  mean(pinguins$comprimento_nadadeira)
+) * 100
+```
+
+**Quantis**
+
+```{r estatistica_quantis}
+quantile(pinguins$comprimento_nadadeira)
+```
+
+### 6.13. Salvando nossos gráficos
+
+Depois de construir um gráfico, podemos salvá-lo para utilizar em relatórios, apresentações ou outros documentos.
+
+Vamos criar um gráfico e armazená-lo em um objeto.
+
+```{r ggplot_salvar_objeto}
+grafico_final <- ggplot(pinguins,
+                        aes(x = comprimento_nadadeira,
+                            y = massa_corporal,
+                            color = especie)) +
+  geom_point(size = 2.5) +
+  labs(
+    x = "Comprimento da nadadeira (mm)",
+    y = "Massa corporal (g)",
+    color = "Espécie",
+    title = "Relação entre características corporais"
+  ) +
+  theme_light()
+
+grafico_final
+```
+
+Podemos utilizar a função `ggsave()` para salvar o gráfico em diferentes formatos.
+
+```{r ggplot_salvar_png, eval=FALSE}
+ggsave(
+  filename = "grafico_pinguins.png",
+  plot = grafico_final,
+  width = 8,
+  height = 5,
+  dpi = 300
+)
+```
+
+Também podemos salvar o gráfico em PDF.
+
+```{r ggplot_salvar_pdf, eval=FALSE}
+ggsave(
+  filename = "grafico_pinguins.pdf",
+  plot = grafico_final,
+  width = 8,
+  height = 5
+)
+```
+
+Esses arquivos serão salvos na pasta de trabalho utilizada pelo R.
+
+### 6.14. Vamos praticar!
+
+Agora que conhecemos diferentes possibilidades de visualização, vamos utilizar o conjunto `pinguins` para resolver alguns desafios.
+
+1. Construa um gráfico de dispersão relacionando o comprimento do bico com a massa corporal.
+2. Identifique as espécies utilizando cores diferentes.
+3. Acrescente uma linha de regressão ao gráfico.
+4. Modifique o título, os nomes dos eixos e o tema.
+5. Construa um histograma para visualizar a distribuição do comprimento das nadadeiras.
+6. Compare a massa corporal dos pinguins entre as espécies utilizando um boxplot.
+7. Construa um gráfico de barras mostrando o número de pinguins por ilha.
+8. Escolha dois gráficos, salve-os em objetos e apresente-os lado a lado.
+9. Salve um dos gráficos em formato PNG.
+
+
+## 7. Família apply
+
+Na seção anterior, aprendemos a utilizar estruturas de repetição, como `for` e `while`, para executar uma mesma operação várias vezes.
+
+Entretanto, o R possui funções que permitem aplicar operações diretamente a diferentes partes de um objeto, sem precisar escrever explicitamente uma estrutura de repetição.
+
+Essas funções pertencem à chamada **família `apply`**.
+
+Vamos conhecer algumas delas:
+
+- `apply()`: aplica uma função às linhas ou colunas de uma matriz.
+- `lapply()`: aplica uma função aos elementos de uma lista e retorna outra lista.
+- `sapply()`: funciona de forma semelhante ao `lapply()`, mas tenta simplificar o resultado.
+- `tapply()`: aplica uma função aos valores separados por grupos.
+- `mapply()`: aplica uma função a elementos correspondentes de dois ou mais objetos.
+
+### 7.1. Conhecendo a função apply()
+
+Vamos começar com uma matriz contendo a altura de quatro plantas avaliadas em três momentos.
+
+```{r matriz_apply}
+alturas <- matrix(
+  c(12, 14, 13, 15,
+    16, 18, 17, 19,
+    20, 22, 21, 24),
+  nrow = 4,
+  ncol = 3
+)
+
+rownames(alturas) <- c("Planta_1", "Planta_2",
+                       "Planta_3", "Planta_4")
+
+colnames(alturas) <- c("Avaliacao_1", "Avaliacao_2",
+                       "Avaliacao_3")
+
+alturas
+```
+
+Imagine que queremos calcular a altura média das plantas em cada avaliação.
+
+Poderíamos utilizar a função `mean()` para cada coluna:
+
+```{r media_colunas_manual}
+mean(alturas[, 1])
+mean(alturas[, 2])
+mean(alturas[, 3])
+```
+
+Mas existe uma maneira mais simples de realizar essas operações.
+
+Podemos utilizar a função `apply()`.
+
+Sua estrutura básica é:
+
+```{r estrutura_apply, eval=FALSE}
+apply(X, MARGIN, FUN)
+```
+
+Nesse caso:
+
+- `X`: objeto que contém os dados.
+- `MARGIN`: indica se a operação será realizada nas linhas ou colunas.
+- `FUN`: função que será aplicada.
+
+**Calculando a média das colunas**
+
+```{r apply_colunas}
+apply(alturas, 2, mean)
+```
+
+O número `2` indica que queremos aplicar a função às colunas.
+
+Portanto, o R calcula a média das alturas em cada avaliação.
+
+**Calculando a média das linhas**
+
+Agora, queremos saber a altura média de cada planta considerando as três avaliações.
+
+```{r apply_linhas}
+apply(alturas, 1, mean)
+```
+
+O número `1` indica que queremos aplicar a função às linhas.
+
+Assim, cada resultado corresponde à média de uma planta.
+
+**Vamos experimentar outras funções!**
+
+```{r apply_outras_funcoes}
+apply(alturas, 2, max)
+
+apply(alturas, 2, min)
+
+apply(alturas, 1, sum)
+
+apply(alturas, 2, sd)
+```
+
+Observe que podemos utilizar diferentes funções dentro de `apply()`.
+
+### 7.2. Conhecendo a função lapply()
+
+A função `lapply()` permite aplicar uma mesma função aos elementos de uma lista.
+
+Vamos criar uma lista com as alturas de três grupos de plantas.
+
+```{r lista_lapply}
+alturas_grupos <- list(
+  Grupo_A = c(12, 14, 15, 13),
+  Grupo_B = c(18, 20, 19, 21),
+  Grupo_C = c(10, 11, 13, 12)
+)
+
+alturas_grupos
+```
+
+Queremos calcular a altura média de cada grupo.
+
+Podemos fazer isso individualmente:
+
+```{r lapply_manual}
+mean(alturas_grupos$Grupo_A)
+
+mean(alturas_grupos$Grupo_B)
+
+mean(alturas_grupos$Grupo_C)
+```
+
+Entretanto, podemos utilizar `lapply()` para realizar os três cálculos de uma só vez.
+
+```{r lapply_medias}
+lapply(alturas_grupos, mean)
+```
+
+A função percorre cada elemento da lista e calcula sua média.
+
+**Observe:** o resultado também é uma lista.
+
+Podemos utilizar outras funções.
+
+```{r lapply_outras_funcoes}
+lapply(alturas_grupos, max)
+
+lapply(alturas_grupos, min)
+
+lapply(alturas_grupos, sd)
+
+lapply(alturas_grupos, length)
+```
+
+### 7.3. Conhecendo a função sapply()
+
+A função `sapply()` é semelhante à `lapply()`, mas tenta apresentar o resultado de uma forma mais simples.
+
+Vamos utilizar a mesma lista de alturas.
+
+```{r sapply_medias}
+sapply(alturas_grupos, mean)
+```
+
+Compare com:
+
+```{r comparar_lapply_sapply}
+lapply(alturas_grupos, mean)
+
+sapply(alturas_grupos, mean)
+```
+
+As duas funções calcularam as mesmas médias.
+
+A diferença está na estrutura do resultado.
+
+Enquanto `lapply()` retorna uma lista, `sapply()` tenta simplificar o resultado. Nesse exemplo, retorna um vetor numérico.
+
+Podemos verificar:
+
+```{r classes_apply}
+class(lapply(alturas_grupos, mean))
+
+class(sapply(alturas_grupos, mean))
+```
+
+**Aplicando sapply() aos dados dos pinguins**
+
+Vamos retornar ao conjunto de dados utilizado na aula anterior.
+
+Queremos calcular a média das principais características corporais dos pinguins.
+
+Primeiro, vamos selecionar apenas as variáveis numéricas de interesse.
+
+```{r variaveis_numericas_pinguins}
+medidas <- pinguins[, c(
+  "comprimento_bico",
+  "profundidade_bico",
+  "comprimento_nadadeira",
+  "massa_corporal"
+)]
+
+head(medidas)
+```
+
+Agora, podemos calcular a média de cada variável.
+
+```{r sapply_pinguins}
+sapply(medidas, mean)
+```
+
+Também podemos calcular o desvio padrão:
+
+```{r sapply_desvio}
+sapply(medidas, sd)
+```
+
+Observe que o R realiza o cálculo para cada coluna selecionada.
+
+### 7.4. Conhecendo a função tapply()
+
+Até agora, calculamos médias de diferentes variáveis. Mas e se quisermos comparar a média de uma mesma variável entre diferentes grupos?
+
+Por exemplo, queremos descobrir a massa corporal média dos pinguins em cada ilha.
+
+Para isso, podemos utilizar `tapply()`.
+
+Sua estrutura básica é:
+
+```{r estrutura_tapply, eval=FALSE}
+tapply(X, INDEX, FUN)
+```
+
+Em que:
+
+- `X`: vetor com os valores que queremos analisar.
+- `INDEX`: variável que identifica os grupos.
+- `FUN`: função que será aplicada a cada grupo.
+
+Vamos utilizar nosso conjunto de dados.
+
+```{r tapply_pinguins}
+tapply(
+  pinguins$massa_corporal,
+  pinguins$ilha,
+  mean
+)
+```
+
+Nesse exemplo, o R separa os valores de massa corporal por ilha e calcula a média de cada grupo.
+
+Também podemos comparar as médias entre as espécies.
+
+```{r tapply_especies}
+tapply(
+  pinguins$massa_corporal,
+  pinguins$especie,
+  mean
+)
+```
+
+**Vamos experimentar outras funções!**
+
+Qual é a maior massa corporal registrada em cada espécie?
+
+```{r tapply_maximo}
+tapply(
+  pinguins$massa_corporal,
+  pinguins$especie,
+  max
+)
+```
+
+E o desvio padrão da massa corporal?
+
+```{r tapply_desvio}
+tapply(
+  pinguins$massa_corporal,
+  pinguins$especie,
+  sd
+)
+```
+
+Observe que estamos aplicando a mesma função a diferentes grupos de observações.
+
+### 7.5. Conhecendo a função mapply()
+
+A função `mapply()` permite aplicar uma função a elementos correspondentes de dois ou mais objetos.
+
+Vamos imaginar que temos dois vetores: um com a quantidade de mudas e outro com o preço de cada muda.
+
+```{r dados_mapply}
+quantidade <- c(10, 20, 15)
+
+preco <- c(5, 4, 6)
+```
+
+Queremos calcular o custo total de cada compra.
+
+Podemos multiplicar diretamente os vetores:
+
+```{r multiplicacao_vetores}
+quantidade * preco
+```
+
+Também podemos utilizar `mapply()` para aplicar a função de multiplicação aos elementos correspondentes.
+
+```{r mapply_multiplicacao}
+mapply(
+  FUN = function(x, y) x * y,
+  quantidade,
+  preco
+)
+```
+
+Nesse exemplo, criamos uma função que recebe dois valores, `x` e `y`, e retorna sua multiplicação.
+
+O R aplica essa função aos elementos correspondentes dos dois vetores.
+
+Observe que os resultados são iguais aos obtidos com a multiplicação direta. Nesse caso, `mapply()` é apenas uma alternativa para demonstrar seu funcionamento, pois a multiplicação vetorizada é mais simples.
+
+### 7.6. Comparando as funções da família apply
+
+Vamos retomar as principais diferenças entre as funções que aprendemos.
+
+| Função | Quando utilizar |
+|:--|:--|
+| `apply()` | Para realizar operações nas linhas ou colunas de matrizes. |
+| `lapply()` | Para aplicar uma função aos elementos de uma lista, mantendo o resultado como lista. |
+| `sapply()` | Para aplicar uma função aos elementos de uma lista ou data frame, tentando simplificar o resultado. |
+| `tapply()` | Para aplicar uma função aos valores separados por grupos. |
+| `mapply()` | Para aplicar uma função a elementos correspondentes de vários objetos.
